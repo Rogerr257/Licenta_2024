@@ -7,14 +7,18 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isLoggedIn: boolean = true;
+  isLoggedInAsClient: boolean = false;
+
   user: {isAdmin: string}
+
   nbrOfRoomsInShoppingCart: number = 1
+  
   constructor() { 
     this.user = {isAdmin: "roger"};
   }
 
   ngOnInit() {
-
     
   }
 

@@ -10,14 +10,44 @@
     margin: 0;
   }
 
+  .navbar-settings {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    background-color: rgb(0, 71, 171);
+    z-index: 1;
+  }
 
-/*
+  .title-color{
+    color: white;
+    font-size: 22px;
+    font-weight: 520;
+  }
 
-2.
-electricieni 
+  .title-color mat-icon {
+    color: white;
+  }
+  
+  .user-details button {
+    color: white;
+    background-color: rgb(0, 71, 171);
+  }
 
-navigatie intre fragmente - creare cerere
-creare profil de profesionist - editare servicii
-plata prin card 
-oferte pe mail 
-profil personal  */
+  .user-details .button_hovering:hover {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+  }
+
+
+  img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  

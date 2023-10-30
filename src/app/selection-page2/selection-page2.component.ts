@@ -7,10 +7,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './selection-page2.component.html',
   styleUrls: ['./selection-page2.component.css']
 })
-export class SelectionPage1Component {
+export class SelectionPage2Component {
   item: string = '';
   selection2Items = ['Curăţenie', 'Curatenie la Domiciliu', 'Meserias Constructpe', 'Construcţii', 'Meseriasi Constructori', 'Instalatii Sanitare', 'Zugraveli Interioare', 'Psiholog', 'Electrician', 'Instalații Electrice', 'Montaj Aer Conditionat'];
 
+  
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -18,6 +19,7 @@ export class SelectionPage1Component {
     this.item = item;
     const filteredItems = this.selection2Items.filter(item => item === this.item);
     this.selection2Items = filteredItems;
+
 
   }
 
