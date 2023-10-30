@@ -10,14 +10,19 @@ import { ActivatedRoute } from '@angular/router';
 export class JobSelection1Component {
   item: string = '';
   selection1Items = [
-    { tip: 'Curăţenie', selectie: 'Calcat rufe' },
-    { tip: 'Curăţenie', selectie: 'Curăţenie la domiciliu' },
+    { tip: 'Curăţenie', selectie: 'Curăţenie in casa' },
     { tip: 'Curăţenie', selectie: 'Curăţenie birouri' },
     { tip: 'Curăţenie', selectie: 'Curăţenie gradina' },
     { tip: 'Curăţenie', selectie: 'Curăţenie scari de bloc' },
-    { tip: 'Construcţii', selectie: 'Curăţenie scari de bloc' },
-    { tip: 'Construcţii', selectie: 'Curăţenie scari de bloc' },
-    { tip: 'Construcţii', selectie: 'Curăţenie scari de bloc' },
+    { tip: 'Montaj Mobila', selectie: 'Montaj mobila bucatarie' },
+    { tip: 'Montaj Mobila', selectie: 'Montaj mobila de sufragerie/ dormitor' },
+    { tip: 'Montaj Mobila', selectie: 'Montaj mobila industriala' },
+    { tip: 'Design Interior', selectie: 'Design Interior' },
+    { tip: 'Instalații Electrice', selectie: 'Instalație electrică casa' },
+    { tip: 'Instalații Electrice', selectie: 'Racordare curent electric' },
+    { tip: 'Deratizare', selectie: 'Deratizare casa' },
+    { tip: 'Mutari Profesionale', selectie: 'Mutari profesionale' },
+    { tip: 'Instalatii Sanitare', selectie: 'Instalatii la baie' }, 
   ];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -34,12 +39,12 @@ export class JobSelection1Component {
 
   onItemClick(item: { tip: string; selectie: string }) {
     // Redirect the user to the selection-page1 component
-    this.router.navigate(['/selection2']);
+    this.router.navigate(['/details']);
   }
 
-  backToHome(item: string) {
+  backToHome() {
     // Redirect the user to the selection-page1 component
-    this.router.navigate(['']);
+    this.router.navigate(['/home-client']);
   }
 
 

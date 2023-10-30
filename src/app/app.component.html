@@ -1,14 +1,14 @@
 <mat-toolbar class="navbar-settings">
   
-  <h1 class="title-color">Mesteri la un click</h1>
+  <h1 class="title-color">Meșteri la un click</h1>
   <span class="user-details">
     <img src="assets/images/homePage.jpeg">
 
-    <button mat-button class="float-right button_hovering">
+    <button mat-button *ngIf="!isLoggedInAsClient" class="float-right button_hovering">
       {{ "Adaugare Profesionist" }}
     </button>
 
-    <button mat-button  *ngIf="!isLoggedIn" class="float-right button_hovering">
+    <button mat-button *ngIf="!isLoggedIn" class="float-right button_hovering">
       <mat-icon>login</mat-icon>
       {{ "Conectare" }}
     </button>

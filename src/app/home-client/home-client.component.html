@@ -1,1 +1,13 @@
-<p>home-client works!</p>
+<div class="screenshot-view">
+    
+    <div class="homeForm">
+      <h2 class="mesajServicii">De ce servicii aveti nevoie?</h2>
+      <ul>
+        <li *ngFor="let item of homeItems" class="services" (click)="onItemClick(item)">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    
+  </div>
+  
