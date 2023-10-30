@@ -1,6 +1,26 @@
-<mat-toolbar>
-  <h1>My Toolbar</h1>
+<mat-toolbar class="navbar-settings">
+  
+  <h1 class="title-color">Mesteri la un click</h1>
+  <span class="user-details">
+    <img src="assets/images/homePage.jpeg">
+
+    <button mat-button class="float-right button_hovering">
+      {{ "Adaugare Profesionist" }}
+    </button>
+
+    <button mat-button  *ngIf="!isLoggedIn" class="float-right button_hovering">
+      <mat-icon>login</mat-icon>
+      {{ "Conectare" }}
+    </button>
+
+    <button mat-button *ngIf="isLoggedIn" class="float-right button_hovering">
+      <mat-icon>logout</mat-icon>
+      {{ "Deconectare" }}
+    </button>
+
+  </span>
 </mat-toolbar>
+
 <div class="container">
   <router-outlet></router-outlet>
 </div>

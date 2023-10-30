@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  homeItems = ['Curăţenie', 'Curatenie la Domiciliu', 'Meserias Constructpe', 'Construcţii', 'Meseriasi Constructori', 'Instalatii Sanitare', 'Zugraveli Interioare', 'Psiholog', 'Electrician', 'Instalații Electrice', 'Montaj Aer Conditionat'];
+  homeItems = ['Curăţenie', 'Montaj Mobila', 'Design Interior',
+    'Instalații Electrice', 'Deratizare',
+    'Mutari Profesionale', 'Instalatii Sanitare'];
 
   constructor(private router: Router) { }
 
