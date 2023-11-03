@@ -1,0 +1,14 @@
+<div class="screenshot-view">
+    
+    <div class="homeForm">
+      <h2>Ce tip de {{ item }} dorești?</h2>
+      <ul>
+        <li *ngFor="let item of selection1Items" class="services" (click)="onItemClick(item)">
+          {{ item.selectie }}
+        </li>
+        <button style="margin-left: 25px;" mat-raised-button (click)="backToHome()" color="primary">
+          Inapoi
+        </button>
+      </ul>
+    </div>
+  </div>

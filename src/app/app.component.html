@@ -2,10 +2,16 @@
   
   <h1 class="title-color">Meșteri la un click</h1>
   <span class="user-details">
-    <img src="assets/images/homePage.jpeg">
+    <img src="assets/images/homePag.jpeg">
 
+    <!-- doar daca ai cont de profesionist apare asta -->
     <button mat-button *ngIf="!isLoggedInAsClient" class="float-right button_hovering">
-      {{ "Adaugare Profesionist" }}
+      {{ "Mergi la Contul de Profesionist" }}
+    </button>
+
+     <!-- daca nu ai cont de profesionist -->
+    <button mat-button *ngIf="!isLoggedInAsClient" class="float-right button_hovering">
+      {{ "Inscrie-te ca Profesionist" }}
     </button>
 
     <button mat-button *ngIf="!isLoggedIn" class="float-right button_hovering">

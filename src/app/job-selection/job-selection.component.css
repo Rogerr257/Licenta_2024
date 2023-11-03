@@ -1,4 +1,4 @@
-.home-selection {
+.screenshot-view {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,9 +68,14 @@
   .button {
     background-color: white;
     transition: background-color 0.5s ease-in-out;
+    
   }
   
   .button:hover {
     background-color: blue;
   }
-  
+
+  .screenshot-view button {
+    width: 100%;
+    max-width: 200px;
+  }
