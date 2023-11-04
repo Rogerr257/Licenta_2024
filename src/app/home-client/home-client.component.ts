@@ -18,7 +18,7 @@ export class HomeClientComponent {
 
   onItemClick(item: string) {
     // Redirect the user to the selection-page1 component
-    this.router.navigate(['/selection1'], { queryParams: { item: item } });
+    this.router.navigate(['/selection'], { queryParams: { item: item } });
   }
 
 }

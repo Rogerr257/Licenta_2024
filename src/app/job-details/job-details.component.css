@@ -1,29 +1,57 @@
-.screenshot-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .screenshot-view h1 {
-    font-size: 24px;
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-  }
-  
-  .screenshot-view mat-form-field {
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .screenshot-view textarea {
-    width: 100%;
-    height: 200px;
-    resize: vertical;
-  }
-  
-  .screenshot-view button {
-    width: 100%;
-    max-width: 200px;
-  }
+.mesajServicii {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.homeForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0px;
+  background-color: white;
+  border: 2px solid rgb(71, 73, 76);
+  opacity: 0.9;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.services {
+  opacity: 1;
+  color: rgb(0, 71, 171);
+  transition: opacity 0.5s ease-in-out;
+
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 19px;
+
+  display: block;
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+
+.services:hover {
+  color: white;
+  background-color: rgb(0, 71, 171);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+button{
+  margin-bottom: 19px;
+  width: 50%;
+}
+
+.homeForm mat-form-field textarea {
+  width: 100%;
+  height: 100%;
+}

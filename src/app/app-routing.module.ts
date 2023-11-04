@@ -11,8 +11,8 @@ import { JobLocationTimeComponent } from './job-location-time/job-location-time.
 const routes: Routes = [
   { path: 'home-client', component: HomeClientComponent },
   { path: 'home-professional', component: HomeProfessionalComponent },
-  { path: 'selection1', component: JobSelectionComponent },
-  { path: 'additional_details', component: JobDetailsComponent },
+  { path: 'selection', component: JobSelectionComponent },
+  { path: 'additional-details', component: JobDetailsComponent },
   { path: 'location-time-details', component: JobLocationTimeComponent },
   { path: 'client-details', component: ClientDetailsComponent },
 ];

@@ -42,7 +42,11 @@ export class JobLocationTimeComponent implements OnInit {
 
   continue() {
     // Redirect the user to the selection-page1 component
-    this.router.navigate(['/additional_details']);
+    this.router.navigate(['/additional-details'])
 
+  }
+  back() {
+    // Redirect the user to the selection-page1 component
+    this.router.navigate(['/home-client']);
   }
 }
