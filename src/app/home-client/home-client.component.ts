@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Firestore, collection, doc ,collectionData}  from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home-client',
@@ -8,17 +9,29 @@ import { Router } from '@angular/router';
 })
 export class HomeClientComponent {
 
-  homeItems = ['Curăţenie', 'Montaj Mobila', 'Design Interior',
-    'Instalații Electrice', 'Deratizare',
-    'Mutari Profesionale', 'Instalatii Sanitare'];
+  homeItems: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private firestore: Firestore) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getData();
+   }
 
   onItemClick(item: string) {
     // Redirect the user to the selection-page1 component
     this.router.navigate(['/selection'], { queryParams: { item: item } });
+  }
+
+  getData() {
+    const collectionInstance = collection(this.firestore, 'servicii-de-baza');
+
+   this.homeItems = collectionData(collectionInstance);
+
+    collectionData(collectionInstance)
+    .subscribe(val=>{
+      console.log(val);
+    });
+
   }
 
 }

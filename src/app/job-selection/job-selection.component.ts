@@ -14,9 +14,12 @@ export class JobSelectionComponent {
     { tip: 'Curăţenie', selectie: 'Curăţenie birouri' },
     { tip: 'Curăţenie', selectie: 'Curăţenie gradina' },
     { tip: 'Curăţenie', selectie: 'Curăţenie scari de bloc' },
+    //nume-serv-principal
+   // nume-serv-secundar
     { tip: 'Montaj Mobila', selectie: 'Montaj mobila bucatarie' },
     { tip: 'Montaj Mobila', selectie: 'Montaj mobila de sufragerie/ dormitor' },
     { tip: 'Montaj Mobila', selectie: 'Montaj mobila industriala' },
+
     { tip: 'Design Interior', selectie: 'Design Interior' },
     { tip: 'Instalații Electrice', selectie: 'Instalație electrică casa' },
     { tip: 'Instalații Electrice', selectie: 'Racordare curent electric' },

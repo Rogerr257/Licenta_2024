@@ -11,8 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule} from '@angular/material/core';
- 
+import { MatNativeDateModule } from '@angular/material/core';
+
 import { JobSelectionComponent } from './job-selection/job-selection.component';
 import { HomeProfessionalComponent } from './home-professional/home-professional.component';
 import { HomeClientComponent } from './home-client/home-client.component';
@@ -21,12 +21,13 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
-import { environment } from './environments/environment';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
+import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
@@ -53,13 +54,15 @@ import { AuthService } from './services/auth.service';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFireStorageModule,
-    AngularFirestoreModule
+
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
