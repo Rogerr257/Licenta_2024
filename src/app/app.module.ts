@@ -13,7 +13,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
  
-
 import { JobSelectionComponent } from './job-selection/job-selection.component';
 import { HomeProfessionalComponent } from './home-professional/home-professional.component';
 import { HomeClientComponent } from './home-client/home-client.component';
@@ -21,6 +20,14 @@ import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+import { environment } from './environments/environment';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -45,9 +52,14 @@ import { JobLocationTimeComponent } from './job-location-time/job-location-time.
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

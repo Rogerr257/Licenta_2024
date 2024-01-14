@@ -35,7 +35,6 @@
   border-radius: 5px;
 }
 
-
 .services:hover {
   color: white;
   background-color: rgb(0, 71, 171);
@@ -46,7 +45,7 @@ ul {
   padding: 0;
 }
 
-button{
+button {
   margin-bottom: 19px;
   width: 50%;
 }

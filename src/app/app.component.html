@@ -5,24 +5,47 @@
     <img src="assets/images/homePage.jpeg">
 
     <!-- doar daca ai cont de profesionist apare asta -->
-    <button mat-button *ngIf="!isLoggedInAsClient" class="float-right button_hovering">
+    <button mat-button *ngIf="!isLoggedAsProfessional" class="float-right button_hovering">
       {{ "Mergi la Contul de Profesionist" }}
     </button>
 
      <!-- daca nu ai cont de profesionist -->
-    <button mat-button *ngIf="!isLoggedInAsClient" class="float-right button_hovering">
+    <button mat-button *ngIf="!isLoggedAsProfessional" class="float-right button_hovering">
       {{ "Inscrie-te ca Profesionist" }}
     </button>
 
-    <button mat-button *ngIf="!isLoggedIn" class="float-right button_hovering">
+
+
+    <button mat-button [hidden]="isLoggedInAsClient" (click)="loginMethod()" class="float-right button_hovering">
       <mat-icon>login</mat-icon>
       {{ "Conectare" }}
     </button>
 
-    <button mat-button *ngIf="isLoggedIn" class="float-right button_hovering">
+    <button mat-button *ngIf="isLoggedInAsClient" (click)="logoutMethod()" class="float-right button_hovering">
       <mat-icon>logout</mat-icon>
       {{ "Deconectare" }}
     </button>
+
+      <!-- <button
+      mat-menu-item
+      *ngIf="!user"
+      (click)="loginMethod()"
+      class="special"
+      >
+      <mat-icon>login</mat-icon>
+      {{ "sign-in" }}
+      </button>
+      <button
+      mat-menu-item
+      *ngIf="user"
+      (click)="logoutMethod()"
+      class="special"
+      > 
+    
+      <mat-icon>power_settings_new</mat-icon>
+      {{ "sign-out" }}
+      </button>
+      -->
 
   </span>
 </mat-toolbar>

@@ -1,4 +1,21 @@
-<h1>Nume</h1>
-<h1>Prenume</h1>
-<h1>Numar de telefon</h1>
-<h1>Adresa de e-mail</h1>
+<div class="homeForm">
+  <h1 class="mesajServicii">Informatii personale</h1>
+
+  <mat-form-field appearance="outline">
+    <input type="text" matInput required placeholder="Nume">
+    <input type="text" matInput required placeholder="Prenume">
+    <input type="tel" matInput required placeholder="Telefon">
+    <input type="email" matInput required placeholder="Email">
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button (click)="continue()" color="primary">
+      Continue
+    </button>
+
+    <button mat-raised-button (click)="back()" color="primary">
+      Inapoi
+    </button>
+
+  </div>
+</div>

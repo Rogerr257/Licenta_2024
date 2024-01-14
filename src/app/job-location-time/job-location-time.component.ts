@@ -14,11 +14,17 @@ export class JobLocationTimeComponent implements OnInit {
   ];
   orase: string[] = [];
   dataLucrarii: any; 
+  judetSelectat: string;
+  orasSelectat: string;
+  dataSelectata: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.judetSelectat = ''; // Initialize the property with an empty string.
+    this.orasSelectat = '';
+    this.dataSelectata = '';
+  }
 
   ngOnInit() {
-    console.log("yhsyhshrws");
   }
 
   onJudetChange(event: any) {
@@ -27,16 +33,18 @@ export class JobLocationTimeComponent implements OnInit {
     );
 
     this.orase = judetulSelectat.listaOrase;
+    this.judetSelectat = judetulSelectat;
   }
 
   onOrasChange(event: any) {
     const orasSelectat =  event.value;
+    this.orasSelectat = orasSelectat;
   }
 
   onDatePickerChange(event: any) {
     const date = event.value;
     const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    console.log(dateString);
+    this.dataSelectata = dateString;
   }
 
 

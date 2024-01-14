@@ -1,0 +1,28 @@
+.mesajServicii {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 10px;
+}
+
+.homeForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  border: 2px solid rgb(71, 73, 76);
+  opacity: 0.9;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+button {
+  margin-bottom: 19px;
+  width: 50%;
+}
+
+input {
+  margin-bottom: 15px;
+}

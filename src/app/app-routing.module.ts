@@ -7,8 +7,8 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
 
-
 const routes: Routes = [
+  { path: '', redirectTo: '/home-client', pathMatch: 'full' },
   { path: 'home-client', component: HomeClientComponent },
   { path: 'home-professional', component: HomeProfessionalComponent },
   { path: 'selection', component: JobSelectionComponent },
