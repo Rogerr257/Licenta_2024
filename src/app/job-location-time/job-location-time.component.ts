@@ -1,0 +1,60 @@
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-job-location-time',
+  templateUrl: './job-location-time.component.html',
+  styleUrls: ['./job-location-time.component.css'],
+})
+export class JobLocationTimeComponent implements OnInit {
+  judete: any = [
+    {numeJudet: 'Alba', listaOrase: ['oras1', 'oras2', 'oras3']},
+    {numeJudet: 'Arad', listaOrase: ['oras52', 'oras22', 'oras96']}
+  ];
+  orase: string[] = [];
+  dataLucrarii: any; 
+  judetSelectat: string;
+  orasSelectat: string;
+  dataSelectata: string;
+
+  constructor(private router: Router) {
+    this.judetSelectat = ''; // Initialize the property with an empty string.
+    this.orasSelectat = '';
+    this.dataSelectata = '';
+  }
+
+  ngOnInit() {
+  }
+
+  onJudetChange(event: any) {
+    const judetulSelectat = this.judete.find(
+      (item: any) => item.numeJudet === event.value
+    );
+
+    this.orase = judetulSelectat.listaOrase;
+    this.judetSelectat = judetulSelectat;
+  }
+
+  onOrasChange(event: any) {
+    const orasSelectat =  event.value;
+    this.orasSelectat = orasSelectat;
+  }
+
+  onDatePickerChange(event: any) {
+    const date = event.value;
+    const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    this.dataSelectata = dateString;
+  }
+
+
+  continue() {
+    // Redirect the user to the selection-page1 component
+    this.router.navigate(['/additional-details'])
+
+  }
+  back() {
+    // Redirect the user to the selection-page1 component
+    this.router.navigate(['/home-client']);
+  }
+}

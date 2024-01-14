@@ -1,0 +1,37 @@
+<div class="homeForm">
+  <h1>Selectați locatia si data lucrarii</h1>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Județ</mat-label>
+    <mat-select (selectionChange)="onJudetChange($event)" required>
+      <mat-option value="">Selectați județul</mat-option>
+      <mat-option *ngFor="let judet of judete" value="{{ judet.numeJudet }}">{{
+        judet.numeJudet
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Oraș</mat-label>
+    <mat-select (selectionChange)="onOrasChange($event)" required>
+      <mat-option value="">Selectați orașul</mat-option>
+      <mat-option *ngFor="let oras of orase" value="{{ oras }}">{{ oras }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <input
+    matInput
+    [matDatepicker]="picker"
+    placeholder="Cand?"
+    (dateChange)="onDatePickerChange($event)"
+    style="width: 60%"
+  />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker required></mat-datepicker>
+
+  <button mat-raised-button (click)="continue()" [disabled]="!judetSelectat || !orasSelectat || !dataSelectata" color="primary">
+    Continuați
+  </button>
+  <button mat-raised-button (click)="back()" color="primary">
+    Inapoi
+  </button>

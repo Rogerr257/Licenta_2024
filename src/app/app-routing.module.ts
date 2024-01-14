@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JobSelection1Component } from './job-selection1/job-selection1.component';
-import { SelectionPage2Component } from './selection-page2/selection-page2.component';
+import { JobSelectionComponent } from './job-selection/job-selection.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { HomeProfessionalComponent } from './home-professional/home-professional.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
+import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home-client', pathMatch: 'full' },
   { path: 'home-client', component: HomeClientComponent },
   { path: 'home-professional', component: HomeProfessionalComponent },
-  { path: 'selection1', component: JobSelection1Component },
-  { path: 'selection2', component: SelectionPage2Component },
-  { path: 'details', component: JobDetailsComponent },
+  { path: 'selection', component: JobSelectionComponent },
+  { path: 'additional-details', component: JobDetailsComponent },
+  { path: 'location-time-details', component: JobLocationTimeComponent },
+  { path: 'client-details', component: ClientDetailsComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

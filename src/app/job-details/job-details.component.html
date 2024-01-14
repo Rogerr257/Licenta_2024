@@ -1,1 +1,20 @@
-<p>job-details works!</p>
+<div class="homeForm">
+  <h1 class="mesajServicii">Care sunt detaliile suplimentare?</h1>
+
+  <mat-form-field appearance="outline">
+    <textarea
+      placeholder="Detalii"
+      [(ngModel)]="textAreaValue"
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="continue()"
+    color="primary"
+  >
+    Continue
+  </button>
+
+  <button mat-raised-button (click)="back()" color="primary">Inapoi</button>
+</div>

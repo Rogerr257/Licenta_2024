@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-job-selection1',
-  templateUrl: './job-selection1.component.html',
-  styleUrls: ['./job-selection1.component.css'],
+  selector: 'app-job-selection',
+  templateUrl: './job-selection.component.html',
+  styleUrls: ['./job-selection.component.css'],
 })
-export class JobSelection1Component {
+export class JobSelectionComponent {
   item: string = '';
   selection1Items = [
     { tip: 'Curăţenie', selectie: 'Curăţenie in casa' },
@@ -39,7 +39,7 @@ export class JobSelection1Component {
 
   onItemClick(item: { tip: string; selectie: string }) {
     // Redirect the user to the selection-page1 component
-    this.router.navigate(['/details']);
+    this.router.navigate(['/location-time-details']);
   }
 
   backToHome() {
