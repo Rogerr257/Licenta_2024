@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-job-selection',
@@ -9,35 +11,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobSelectionComponent {
   item: string = '';
-  selection1Items = [
-    { tip: 'Curăţenie', selectie: 'Curăţenie in casa' },
-    { tip: 'Curăţenie', selectie: 'Curăţenie birouri' },
-    { tip: 'Curăţenie', selectie: 'Curăţenie gradina' },
-    { tip: 'Curăţenie', selectie: 'Curăţenie scari de bloc' },
-    { tip: 'Montaj Mobila', selectie: 'Montaj mobila bucatarie' },
-    { tip: 'Montaj Mobila', selectie: 'Montaj mobila de sufragerie/ dormitor' },
-    { tip: 'Montaj Mobila', selectie: 'Montaj mobila industriala' },
-    { tip: 'Design Interior', selectie: 'Design Interior' },
-    { tip: 'Instalații Electrice', selectie: 'Instalație electrică casa' },
-    { tip: 'Instalații Electrice', selectie: 'Racordare curent electric' },
-    { tip: 'Deratizare', selectie: 'Deratizare casa' },
-    { tip: 'Mutari Profesionale', selectie: 'Mutari profesionale' },
-    { tip: 'Instalatii Sanitare', selectie: 'Instalatii la baie' }, 
-  ];
+  selections: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-  }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private firestore: Firestore
+  ) {}
 
   ngOnInit() {
-    const item = this.activatedRoute.snapshot.queryParams['item'];
-    this.item = item;
-    const filteredItems = this.selection1Items.filter(
-      (item) => item.tip === this.item
-    );
-    this.selection1Items = filteredItems;
+    const mainServiceName = this.activatedRoute.snapshot.queryParams['item'];
+    this.item = mainServiceName;
+
+    // ne subscriem la observabil pentru a lua datele din el 
+    this.getItems().subscribe(items=>{
+      this.selections = items;
+    });
   }
 
-  onItemClick(item: { tip: string; selectie: string }) {
+  // Function to get items from the database using observables
+  getItems(): Observable<any[]> {
+    const collectionInstance = collection(this.firestore, 'servicii-secundare');
+    const filteredQuery = query(collectionInstance, where('serviciu', '==', this.item));
+
+    return collectionData(filteredQuery);
+  }
+
+  onItemClick(item: { serviciu: string; serviciu_secundar: string }) {
     // Redirect the user to the selection-page1 component
     this.router.navigate(['/location-time-details']);
   }
@@ -46,6 +46,4 @@ export class JobSelectionComponent {
     // Redirect the user to the selection-page1 component
     this.router.navigate(['/home-client']);
   }
-
-
 }
