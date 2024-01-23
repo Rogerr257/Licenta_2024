@@ -3,11 +3,11 @@
     <h2 class="mesajServicii">Ce tip de {{ item }} dorești?</h2>
     <ul>
       <li
-        *ngFor="let item of selection1Items"
+        *ngFor="let item of selections"
         class="services"
         (click)="onItemClick(item)"
       >
-        {{ item.selectie }}
+        {{ item.serviciu_secundar }}
       </li>
     </ul>
 
