@@ -12,12 +12,12 @@ export class ClientDetailsComponent {
   constructor(private router: Router){}
 
   continue() {
-    // Redirect the user to the selection-page1 component
+    //se redirectioneaza userul la pagina cu informatiile personale ale clientului care se completeaza in cerere
     this.router.navigate(['/client-details']);
   }
 
   back() {
-    // Redirect the user to the selection-page1 component
+    //se redirectioneaza userul la pagina anterioara
     this.router.navigate(['/additional-details']);
   }
 }

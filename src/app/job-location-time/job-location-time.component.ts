@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Firestore, collection, collectionData}  from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-job-location-time',
@@ -8,32 +9,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./job-location-time.component.css'],
 })
 export class JobLocationTimeComponent implements OnInit {
-  judete: any = [
-    {numeJudet: 'Alba', listaOrase: ['oras1', 'oras2', 'oras3']},
-    {numeJudet: 'Arad', listaOrase: ['oras52', 'oras22', 'oras96']}
-  ];
-  orase: string[] = [];
+  judete: any = [];
+  oraseleFiltrate: any = [];
+
   dataLucrarii: any; 
   judetSelectat: string;
   orasSelectat: string;
   dataSelectata: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private firestore: Firestore) {
     this.judetSelectat = ''; // Initialize the property with an empty string.
     this.orasSelectat = '';
     this.dataSelectata = '';
   }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    const colectieJudete = collection(this.firestore, 'judete');
+    this.judete = collectionData(colectieJudete);
   }
 
   onJudetChange(event: any) {
-    const judetulSelectat = this.judete.find(
-      (item: any) => item.numeJudet === event.value
+    const colectieDeOrase = collection(this.firestore, 'orase');
+
+   collectionData(colectieDeOrase)
+    .subscribe((toateOrasele: any[]) =>
+      {
+        this.oraseleFiltrate = toateOrasele.filter(
+        (item: any) => item.judet === event.value)
+      }
     );
 
-    this.orase = judetulSelectat.listaOrase;
-    this.judetSelectat = judetulSelectat;
+    console.log(this.oraseleFiltrate);
+    this.judetSelectat = event.value;
   }
 
   onOrasChange(event: any) {

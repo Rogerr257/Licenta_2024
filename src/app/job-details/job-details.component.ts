@@ -17,12 +17,10 @@ export class JobDetailsComponent implements OnInit{
   }
 
   continue() {
-    // Redirect the user to the selection-page1 component
     this.router.navigate(['/client-details']);
   }
 
   back() {
-    // Redirect the user to the selection-page1 component
     this.router.navigate(['/location-time-details']);
   }
 

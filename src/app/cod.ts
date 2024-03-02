@@ -55,3 +55,25 @@
 //   this.trimiteMailConfirmare();
 
 // }
+
+
+
+const judeteRef = this.firebaseService.collection('judete')
+
+// for (const judet of this.judete) {
+//   judeteRef.add({ nume: judet });
+// }
+
+
+private fetchUsersFromFirestore(): Observable<any[]> {
+    const usersCollection = collection(this.firestore, 'users');
+
+    // Use collectionData to get an Observable of the documents
+    return collectionData(usersCollection).pipe(
+      switchMap((users) => {
+        // Update the local array
+        this.users = users;
+        return this.users$;
+      })
+    );
+  }

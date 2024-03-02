@@ -29,7 +29,7 @@ export class JobSelectionComponent {
     });
   }
 
-  // Function to get items from the database using observables
+   //se preia elementele din baza de date folosind observables
   getItems(): Observable<any[]> {
     const collectionInstance = collection(this.firestore, 'servicii-secundare');
     const filteredQuery = query(collectionInstance, where('serviciu', '==', this.item));
@@ -38,12 +38,11 @@ export class JobSelectionComponent {
   }
 
   onItemClick(item: { serviciu: string; serviciu_secundar: string }) {
-    // Redirect the user to the selection-page1 component
-    this.router.navigate(['/location-time-details']);
+
+    this.router.navigate(['/location-time-details'], { queryParams: { item: item.serviciu } });
   }
 
   backToHome() {
-    // Redirect the user to the selection-page1 component
     this.router.navigate(['/home-client']);
   }
 }
