@@ -1,1 +1,9 @@
-<p>jobs-portal works!</p>
+<div *ngFor="let service of servicesRequests | async">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ service.mainService }}</h5>
+        <p class="card-text">{{ service.serviciu_secundar }}</p>
+        <button class="btn btn-primary" (click)="applyForService(service)">Apply for this service</button>
+      </div>
+    </div>
+  </div>

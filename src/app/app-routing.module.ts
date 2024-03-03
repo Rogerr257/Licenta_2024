@@ -6,6 +6,7 @@ import { HomeProfessionalComponent } from './home-professional/home-professional
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
+import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home-client', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'additional-details', component: JobDetailsComponent },
   { path: 'location-time-details', component: JobLocationTimeComponent },
   { path: 'client-details', component: ClientDetailsComponent },
+  { path: 'portal', component: JobsPortalComponent },
 ];
 
 @NgModule({

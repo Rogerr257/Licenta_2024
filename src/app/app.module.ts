@@ -24,11 +24,13 @@ import { JobLocationTimeComponent } from './job-location-time/job-location-time.
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-
+import { HttpClientModule } from '@angular/common/http';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
 
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
+import { SendRequestComponent } from './send-request/send-request.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { AuthService } from './services/auth.service';
     JobDetailsComponent,
     ClientDetailsComponent,
     JobLocationTimeComponent,
+    SendRequestComponent,
   ],
   imports: [
     FormsModule,
@@ -54,6 +57,7 @@ import { AuthService } from './services/auth.service';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    HttpClientModule,
 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

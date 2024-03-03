@@ -5,16 +5,20 @@
     <img src="assets/images/homePage.jpeg">
 
     <!-- doar daca ai cont de profesionist apare asta -->
-    <button mat-button *ngIf="!isLoggedAsProfessional" class="float-right button_hovering">
+    <button mat-button *ngIf="!user.isProfessional" (click)="navigateToPortal()" class="float-right button_hovering">
       {{ "Mergi la Contul de Profesionist" }}
     </button>
 
-     <!-- daca nu ai cont de profesionist -->
-    <button mat-button *ngIf="!isLoggedAsProfessional" class="float-right button_hovering">
-      {{ "Inscrie-te ca Profesionist" }}
+ 
+    <button mat-button *ngIf="!user.isClient" (click)="navigateToClientRequestSelection()" class="float-right button_hovering">
+      {{ "Mergi la Contul de Client" }}
     </button>
 
 
+    <!-- daca nu ai cont de profesionist -->
+    <!-- <button mat-button *ngIf="!isLoggedAsProfessional" (click)="loginMethod()" class="float-right button_hovering">
+      {{ "Inscrie-te ca Profesionist" }}
+    </button> -->
 
     <button mat-button [hidden]="isLoggedInAsClient" (click)="loginMethod()" class="float-right button_hovering">
       <mat-icon>login</mat-icon>

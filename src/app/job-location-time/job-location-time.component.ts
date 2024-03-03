@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Firestore, collection, collectionData}  from '@angular/fire/firestore';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { FirebaseService } from '../services/firebase.service';
+import { ServiceRequestInfoService } from '../services/service-request-info.service';
 
 @Component({
   selector: 'app-job-location-time',
@@ -12,13 +13,18 @@ export class JobLocationTimeComponent implements OnInit {
   judete: any = [];
   oraseleFiltrate: any = [];
 
-  dataLucrarii: any; 
+  dataLucrarii: any;
   judetSelectat: string;
   orasSelectat: string;
   dataSelectata: string;
 
-  constructor(private router: Router, private firestore: Firestore) {
-    this.judetSelectat = ''; // Initialize the property with an empty string.
+  constructor(
+    private router: Router,
+    private firestore: Firestore,
+    private firebaseService: FirebaseService,
+    private serviceRequest: ServiceRequestInfoService
+  ) {
+    this.judetSelectat = '';
     this.orasSelectat = '';
     this.dataSelectata = '';
   }
@@ -35,34 +41,38 @@ export class JobLocationTimeComponent implements OnInit {
   onJudetChange(event: any) {
     const colectieDeOrase = collection(this.firestore, 'orase');
 
-   collectionData(colectieDeOrase)
-    .subscribe((toateOrasele: any[]) =>
-      {
-        this.oraseleFiltrate = toateOrasele.filter(
-        (item: any) => item.judet === event.value)
-      }
-    );
+    collectionData(colectieDeOrase).subscribe((toateOrasele: any[]) => {
+      this.oraseleFiltrate = toateOrasele.filter(
+        (item: any) => item.judet === event.value
+      );
+    });
 
     console.log(this.oraseleFiltrate);
     this.judetSelectat = event.value;
   }
 
   onOrasChange(event: any) {
-    const orasSelectat =  event.value;
+    const orasSelectat = event.value;
     this.orasSelectat = orasSelectat;
   }
 
   onDatePickerChange(event: any) {
     const date = event.value;
-    const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    const dateString = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
     this.dataSelectata = dateString;
   }
 
-
   continue() {
-    // Redirect the user to the selection-page1 component
-    this.router.navigate(['/additional-details'])
+    this.serviceRequest.updateUserDetails({
+      judetSelectat: this.judetSelectat,
+      orasSelectat: this.orasSelectat,
+      dataSelectata: this.dataSelectata,
+    });
 
+    // this.firebaseService.submitRequest(this.serviceRequest.userDetails);
+    this.router.navigate(['/additional-details']);
   }
   back() {
     // Redirect the user to the selection-page1 component
