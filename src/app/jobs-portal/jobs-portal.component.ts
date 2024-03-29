@@ -23,36 +23,10 @@ export class JobsPortalComponent {
   servicesRequests: any;
   allServicesData: any;
   userId: any;
-  services: any;
 
   constructor(private firestore: Firestore, private userService: AuthService) {}
 
   ngOnInit() {
-    this.services = [{
-      name: 'Serviciu de Curățenie',
-      location: 'Strada Exemplu, Nr. 123',
-      date: '15 Martie 2024',
-      details: 'Curățenie generală a apartamentului'
-    },
-    {
-      name: 'Serviciu de Curățenie',
-      location: 'Strada Exemplu, Nr. 123',
-      date: '15 Martie 2024',
-      details: 'Curățenie generală a apartamentului'
-    },
-    {
-      name: 'Serviciu de Curățenie',
-      location: 'Strada Exemplu, Nr. 123',
-      date: '15 Martie 2024',
-      details: 'Curățenie generală a apartamentului'
-    },
-    {
-      name: 'Serviciu de Deratizare',
-      location: 'Strada Testului, Nr. 456',
-      date: '20 Martie 2024',
-      details: 'Tratament împotriva rozătoarelor'
-    }];
-
     this.userService.getCurrentUser().subscribe((user) => {
       this.userId = user;
       this.servicesRequestsCollection = collection(
@@ -63,20 +37,22 @@ export class JobsPortalComponent {
       this.servicesRequests = collectionData(
         query(
           this.servicesRequestsCollection,
-          where('userMail', '==', this.userId.email)
+          where('email', '==', this.userId.email)
         )
       ) as Observable<any[]>;
+
+      // this.servicesRequests = collectionData(this.servicesRequestsCollection) as Observable<any[]>;
       this.servicesRequests.subscribe((data: any) => {
         this.allServicesData = data;
       });
     });
 
-    // setTimeout(function(){
-    // },1000);
+    setTimeout(function(){
+    },1000);
 
   }
 
-  applyForService(service: any) {
+  applyForService(service: any, email: any) {
     // Implement your logic to open a popup and send an offer
     // You can use a library like Angular Material Dialog for the popup
     // You can also use Angular forms to get user input for the offer message

@@ -1,7 +1,3 @@
-.page-title {
-  text-align: center;
-}
-
 .service-list {
   margin-bottom: 400px;
   display: flex;
@@ -41,4 +37,15 @@
   .service {
     width: calc(100% - 20px); /* La dimensiuni mai mici, afișăm un singur card pe rând */
   }
+}
+
+.page-title-background {
+  padding: 20px; /* Add more padding for better spacing */
+  background-color: #fff; /* Set the background color of the title to white */
+  text-align: center;
+  opacity: 0.9;
+  border-radius: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 900;
 }
