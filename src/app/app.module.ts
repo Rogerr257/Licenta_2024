@@ -8,7 +8,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';;
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -54,6 +58,9 @@ import { SendRequestComponent } from './send-request/send-request.component';
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatGridListModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,

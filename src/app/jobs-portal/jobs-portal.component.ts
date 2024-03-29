@@ -23,10 +23,36 @@ export class JobsPortalComponent {
   servicesRequests: any;
   allServicesData: any;
   userId: any;
+  services: any;
 
   constructor(private firestore: Firestore, private userService: AuthService) {}
 
   ngOnInit() {
+    this.services = [{
+      name: 'Serviciu de Curățenie',
+      location: 'Strada Exemplu, Nr. 123',
+      date: '15 Martie 2024',
+      details: 'Curățenie generală a apartamentului'
+    },
+    {
+      name: 'Serviciu de Curățenie',
+      location: 'Strada Exemplu, Nr. 123',
+      date: '15 Martie 2024',
+      details: 'Curățenie generală a apartamentului'
+    },
+    {
+      name: 'Serviciu de Curățenie',
+      location: 'Strada Exemplu, Nr. 123',
+      date: '15 Martie 2024',
+      details: 'Curățenie generală a apartamentului'
+    },
+    {
+      name: 'Serviciu de Deratizare',
+      location: 'Strada Testului, Nr. 456',
+      date: '20 Martie 2024',
+      details: 'Tratament împotriva rozătoarelor'
+    }];
+
     this.userService.getCurrentUser().subscribe((user) => {
       this.userId = user;
       this.servicesRequestsCollection = collection(

@@ -1,37 +1,44 @@
-.card {
-    width: 300px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+.page-title {
+  text-align: center;
+}
+
+.service-list {
+  margin-bottom: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10px; /* Adăugăm padding pentru a separa cardurile de marginile containerului */
+}
+
+.service {
+  width: calc(33.33% - 20px); /* Afișăm 3 carduri pe rând, scăzând marginul de 20px */
+  margin-bottom: 20px;
+  background-color: #fff; /* Fondul cardului */
+  border-radius: 10px; /* Rotunjirea colțurilor cardului */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Umbră sub card */
+  transition: transform 0.3s;
+}
+
+.service:hover {
+  transform: scale(1.05); /* Efect de mărire la hover */
+}
+
+.service p {
+  margin: 5px 0;
+}
+
+.service button {
+  margin-top: 10px;
+}
+
+@media (max-width: 992px) {
+  .service {
+    width: calc(50% - 20px); /* La dimensiuni mai mici, afișăm 2 carduri pe rând */
   }
-  
-  .card:hover {
-    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .service {
+    width: calc(100% - 20px); /* La dimensiuni mai mici, afișăm un singur card pe rând */
   }
-  
-  .card-body {
-    padding: 1rem;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
+}
