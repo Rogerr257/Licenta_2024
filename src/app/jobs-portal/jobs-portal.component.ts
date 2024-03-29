@@ -29,22 +29,25 @@ export class JobsPortalComponent {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
       this.userId = user;
+      this.servicesRequestsCollection = collection(
+        this.firestore,
+        'serviceRequests'
+      );
+    
+      this.servicesRequests = collectionData(
+        query(
+          this.servicesRequestsCollection,
+          where('userMail', '==', this.userId.email)
+        )
+      ) as Observable<any[]>;
+      this.servicesRequests.subscribe((data: any) => {
+        this.allServicesData = data;
+      });
     });
 
-    this.servicesRequestsCollection = collection(
-      this.firestore,
-      'serviceRequests'
-    );
+    // setTimeout(function(){
+    // },1000);
 
-    this.servicesRequests = collectionData(
-      query(
-        this.servicesRequestsCollection,
-        where('userMail', '==', this.userId.email)
-      )
-    ) as Observable<any[]>;
-    this.servicesRequests.subscribe((data: any) => {
-      this.allServicesData = data;
-    });
   }
 
   applyForService(service: any) {
