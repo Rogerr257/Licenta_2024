@@ -1,20 +1,17 @@
 <div class="homeForm">
   <h1 class="mesajServicii">Care sunt detaliile suplimentare?</h1>
 
-  <mat-form-field appearance="outline">
-    <textarea
-      placeholder="Detalii"
-      [(ngModel)]="textAreaValue"
-    ></textarea>
-  </mat-form-field>
+  <textarea
+    id="detailsInput"
+    name="detailsInput"
+    rows="6"
+    cols="50"
+    placeholder="Introduceți detaliile aici"
+    class="detailsTextArea"
+  ></textarea>
 
-  <button
-    mat-raised-button
-    (click)="continue()"
-    color="primary"
-  >
-    Continue
-  </button>
-
-  <button mat-raised-button (click)="back()" color="primary">Inapoi</button>
+  <div class="buttonContainer">
+    <button mat-raised-button (click)="back()" color="primary" class="backButton">Inapoi</button>
+    <button mat-raised-button (click)="continue()" color="primary" class="submitButton">Continue</button>
+  </div>
 </div>

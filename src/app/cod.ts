@@ -1,17 +1,13 @@
+// https://medium.com/@nickroach_50526/sending-emails-with-node-js-using-smtp-gmail-and-oauth2-316fe9c790a1
+// https://developers.google.com/oauthplayground/
+
+
 // this.serviciu = {
 //     locatie: "",
 //     numeClient: '',
 //     tipeServiciu: 'IT',
 //     detalii: ""
 //   };
-
-// const output = `
-// <h2>You paid a total of ${price}$ for this order.</h2>
-// <h2>Here is the list with the rooms you booked: </h2>
-// <h3>${text}</h3>
-// <h2>  ${discount} </h2>
-// <h2>Thank you for choosing Ambiance!</h2>
-// `;
 
 
 // trimiteMailConfirmare() {}
@@ -43,9 +39,6 @@
 
 //         this.trimiteMailLaProfesionist(profesionist.profesionistNume);
 
-
-
-       
 //       }
 //     }
 //   }
@@ -55,3 +48,22 @@
 //   this.trimiteMailConfirmare();
 
 // }
+
+
+// for (const judet of this.judete) {
+//   judeteRef.add({ nume: judet });
+// }
+
+
+// private fetchUsersFromFirestore(): Observable<any[]> {
+//     const usersCollection = collection(this.firestore, 'users');
+
+//     // Use collectionData to get an Observable of the documents
+//     return collectionData(usersCollection).pipe(
+//       switchMap((users) => {
+//         // Update the local array
+//         this.users = users;
+//         return this.users$;
+//       })
+//     );
+//   }

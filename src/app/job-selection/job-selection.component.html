@@ -1,12 +1,8 @@
-
+<div class="home-selection">
   <div class="homeForm">
     <h2 class="mesajServicii">Ce tip de {{ item }} dorești?</h2>
-    <ul>
-      <li
-        *ngFor="let item of selections"
-        class="services"
-        (click)="onItemClick(item)"
-      >
+    <ul class="services-list">
+      <li *ngFor="let item of selections" class="service" (click)="onItemClick(item)">
         {{ item.serviciu_secundar }}
       </li>
     </ul>
@@ -14,4 +10,5 @@
     <button mat-raised-button (click)="backToHome()" color="primary">
       Inapoi
     </button>
+  </div>
 </div>

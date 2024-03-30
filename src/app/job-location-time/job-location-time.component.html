@@ -5,9 +5,9 @@
     <mat-label>Județ</mat-label>
     <mat-select (selectionChange)="onJudetChange($event)" required>
       <mat-option value="">Selectați județul</mat-option>
-      <mat-option *ngFor="let judet of judete" value="{{ judet.numeJudet }}">{{
-        judet.numeJudet
-      }}</mat-option>
+      <mat-option *ngFor="let judet of judete | async" value="{{ judet.nume.nume }}">
+      {{ judet.nume.nume }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -15,7 +15,9 @@
     <mat-label>Oraș</mat-label>
     <mat-select (selectionChange)="onOrasChange($event)" required>
       <mat-option value="">Selectați orașul</mat-option>
-      <mat-option *ngFor="let oras of orase" value="{{ oras }}">{{ oras }}</mat-option>
+      <mat-option *ngFor="let oras of oraseleFiltrate" value="{{ oras.nume }}">
+        {{ oras.nume }}
+      </mat-option>
     </mat-select>
   </mat-form-field>
 

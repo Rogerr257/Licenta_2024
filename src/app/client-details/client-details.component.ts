@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceRequestInfoService } from '../services/service-request-info.service';
 
 @Component({
   selector: 'app-client-details',
@@ -7,17 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent {
+  detalii_client: any;
 
+  constructor(private router: Router,
+    private serviceRequest: ServiceRequestInfoService){
 
-  constructor(private router: Router){}
+      this.detalii_client = null;
+    }
 
   continue() {
-    // Redirect the user to the selection-page1 component
+
+    this.serviceRequest.updateUserDetails({
+      detalii_client: this.detalii_client
+    });
+
+
+    //se redirectioneaza userul la pagina cu informatiile personale ale clientului care se completeaza in cerere
     this.router.navigate(['/client-details']);
   }
 
   back() {
-    // Redirect the user to the selection-page1 component
+    //se redirectioneaza userul la pagina anterioara
     this.router.navigate(['/additional-details']);
   }
 }

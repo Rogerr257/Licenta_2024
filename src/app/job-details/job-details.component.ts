@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceRequestInfoService } from '../services/service-request-info.service';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
-  styleUrls: ['./job-details.component.css']
+  styleUrls: ['./job-details.component.css'],
 })
-export class JobDetailsComponent implements OnInit{
+export class JobDetailsComponent implements OnInit {
   textAreaValue: any;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private serviceRequest: ServiceRequestInfoService
+  ) {
     this.textAreaValue = null;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   continue() {
-    // Redirect the user to the selection-page1 component
+    this.serviceRequest.updateUserDetails({
+      detalii_suplimentare: this.textAreaValue,
+    });
+
     this.router.navigate(['/client-details']);
   }
 
   back() {
-    // Redirect the user to the selection-page1 component
     this.router.navigate(['/location-time-details']);
   }
-
 }

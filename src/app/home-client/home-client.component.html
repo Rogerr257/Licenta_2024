@@ -1,13 +1,10 @@
 <div class="home-selection">
-    
-    <div class="homeForm">
-      <h2 class="mesajServicii">De ce servicii aveti nevoie?</h2>
-      <ul>
-        <li *ngFor="let item of homeItems |async" class="services" (click)="onItemClick(item)">
-          {{ item.nume }}
-        </li>
-      </ul>
-    </div>
-    
+  <div class="homeForm">
+    <h2 class="mesajServicii">De ce servicii aveți nevoie?</h2>
+    <ul class="services-list">
+      <li *ngFor="let item of homeItems | async" class="service" (click)="onItemClick(item)">
+        {{ item.nume }}
+      </li>
+    </ul>
   </div>
-  
+</div>

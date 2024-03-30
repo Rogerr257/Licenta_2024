@@ -5,28 +5,46 @@ import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {
+  Firestore,
+  collection,
+  getDoc,
+  doc,
+  setDoc,
+  updateDoc,
+  addDoc,
+  collectionData,
+} from '@angular/fire/firestore';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  utilizatori: any = [];
+  users: any[] = [];
+
   constructor(
     private afAuth: AngularFireAuth, // Inject Firebase auth service
+    private firestore: Firestore,
     private alertifyService: AlertifyService,
     private router: Router
-  ) {}
+  ) {
+  }
+
 
   // Sign in with Google
   loginWithGoogle(): any {
-    // this.alertifyService.alert('pam pam');
     this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
+
 
   authStateFunction(user: any): void {
     if (user) {
       // this.alertifyService.success('error');
     } else {
-      this.alertifyService.alert('Logged Out');
+      this.alertifyService.success('Logged Out');
       this.router.navigate(['/']);
     }
   }

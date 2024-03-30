@@ -1,4 +1,13 @@
 import { Component } from '@angular/core';
+import {
+  collection,
+  collectionData,
+  Firestore,
+  query,
+  where,
+} from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-professional',
@@ -7,4 +16,11 @@ import { Component } from '@angular/core';
 })
 export class HomeProfessionalComponent {
 
+  constructor(
+    private readonly firestore: Firestore,
+    private readonly router: Router,
+  ){}
+  
 }
+
+
