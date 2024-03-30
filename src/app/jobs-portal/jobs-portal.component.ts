@@ -53,7 +53,7 @@ export class JobsPortalComponent {
 
   async aplica(serviciu: string) {
 
-    this.router.navigate(['/service-request-details', serviciu]);
+    // this.router.navigate(['/service-request-details', serviciu]);
     // const taskCollection = collection(this.firestore, `serviceRequests`);
     // await addDoc(taskCollection, { ...this.allServicesData[0] });
   }

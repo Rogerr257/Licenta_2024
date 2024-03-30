@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'location-time-details', component: JobLocationTimeComponent },
   { path: 'client-details', component: ClientDetailsComponent },
   { path: 'portal', component: JobsPortalComponent },
-  { path: 'service-request-details/:id', component: ServiceRequestDetailsComponent }
+  // { path: 'portal-service-details/:id', component: JobsPortalComponent },
+  { path: 'service-request-details', component: ServiceRequestDetailsComponent }
 ];
 
 @NgModule({

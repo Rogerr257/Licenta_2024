@@ -14,36 +14,35 @@ export class ServiceRequestDetailsComponent implements OnInit {
   name: any;
   email: any;
   message: any;
+  cerereDeServiciuComplet: any;
 
   constructor(
     private router: Router,
     private firestore: Firestore,
     private firebaseService: FirebaseService,
-    private serviceRequest: ServiceRequestInfoService,
-    private emailService: EmailService,
-  ) {
-
-  }
+    private cerereDeServiciuInFormare: ServiceRequestInfoService,
+    private emailService: EmailService
+  ) {}
 
   ngOnInit() {
+    this.cerereDeServiciuComplet = this.cerereDeServiciuInFormare.InformatiiPentruCerere;
   }
 
-  sendFinalRequest() {
+  trimiteCererea() {
 
-    this.firebaseService.submitRequest(this.serviceRequest.InformatiiPentruCerere);
+    this.firebaseService.submitRequest(this.cerereDeServiciuComplet);
 
-    this.emailService.sendEmail(this.name, this.email, this.message).subscribe(
-      (response) => {
-        console.log('Email sent successfully!');
-      },
-      (error) => {
-        console.log('Error sending email:', error);
-      }
-    );
+    // this.emailService.sendEmail(this.name, this.email, this.message).subscribe(
+    //   (response) => {
+    //     console.log('Email sent successfully!');
+    //   },
+    //   (error) => {
+    //     console.log('Error sending email:', error);
+    //   }
+    // );
 
     this.router.navigate(['/home-client']);
     // thank you for using Mesteri la un Click, ceva de genul dupa ce ce ai trimis mailul
-
   }
 
 
