@@ -2,7 +2,7 @@
   <div class="homeForm">
     <h2 class="mesajServicii">De ce servicii aveți nevoie?</h2>
     <ul class="services-list">
-      <li *ngFor="let item of homeItems | async" class="service" (click)="onItemClick(item)">
+      <li *ngFor="let item of serviciiPrimare | async" class="service" (click)="onItemClick(item)">
         {{ item.nume }}
       </li>
     </ul>

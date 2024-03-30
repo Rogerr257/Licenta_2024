@@ -7,6 +7,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
 import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
+import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home-client', pathMatch: 'full' },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'location-time-details', component: JobLocationTimeComponent },
   { path: 'client-details', component: ClientDetailsComponent },
   { path: 'portal', component: JobsPortalComponent },
+  { path: 'service-request-details/:id', component: ServiceRequestDetailsComponent }
 ];
 
 @NgModule({

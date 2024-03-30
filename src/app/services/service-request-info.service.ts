@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
+import { AlertifyService } from './alertify.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceRequestInfoService {
-  public userDetails: any = {};
+  public InformatiiPentruCerere: any = {};
 
-  updateUserDetails(newDetails: any) {
-    this.userDetails = { ...this.userDetails, ...newDetails };
+  constructor( private alertifyService: AlertifyService,) { }
+
+  updateUserDetails(informatiiNoi: any) {
+    this.InformatiiPentruCerere = { ...this.InformatiiPentruCerere, ...informatiiNoi };
+    console.log(this.InformatiiPentruCerere);
+    // this.alertifyService.success(this.InformatiiPentruCerere);
   }
 }

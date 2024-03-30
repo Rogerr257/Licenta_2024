@@ -4,7 +4,7 @@
     <div class="service" *ngFor="let service of servicesRequests | async">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{ service.mainService }}</mat-card-title>
+          <mat-card-title>{{ service.serviciuPrincipal }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p><strong>Serviciu</strong> {{ service.serviciu_secundar }}</p>
@@ -13,7 +13,10 @@
           <p><strong>Data:</strong> {{ service.dataSelectata }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="applyForService()">Aplica</button>
+          <button mat-raised-button color="primary" (click)="aplica(service)">Aplica</button>
+
+          <!-- <button mat-raised-button color="primary" (click)="applyForService(service.id)">Apply</button> -->
+
         </mat-card-actions>
       </mat-card>
     </div>

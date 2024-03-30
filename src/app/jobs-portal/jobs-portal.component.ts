@@ -3,6 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
   collection,
@@ -25,7 +26,7 @@ export class JobsPortalComponent {
   allServicesData: any;
   userId: any;
 
-  constructor(private firestore: Firestore, private userService: AuthService) {}
+  constructor(private firestore: Firestore, private userService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
@@ -50,14 +51,10 @@ export class JobsPortalComponent {
 
   }
 
-  async applyForService() {
-    // Implement your logic to open a popup and send an offer
-    // You can use a library like Angular Material Dialog for the popup
-    // You can also use Angular forms to get user input for the offer message
-    // console.log('Applying for service:', service);
+  async aplica(serviciu: string) {
 
-    const taskCollection = collection(this.firestore, `serviceRequests`);
-    await addDoc(taskCollection, { ...this.allServicesData[0] });
-
+    this.router.navigate(['/service-request-details', serviciu]);
+    // const taskCollection = collection(this.firestore, `serviceRequests`);
+    // await addDoc(taskCollection, { ...this.allServicesData[0] });
   }
 }
