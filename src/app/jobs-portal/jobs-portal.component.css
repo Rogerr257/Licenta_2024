@@ -1,3 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Asigură că containerul ocupă întreaga înălțime a ecranului */
+}
+
+.page-title-background {
+  margin-top: 20px;
+  padding: 20px; /* Add more padding for better spacing */
+  background-color: #fff; /* Set the background color of the title to white */
+  border-radius: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 900;
+}
+
 .service-list {
   margin-bottom: 400px;
   display: flex;
@@ -7,8 +25,8 @@
 }
 
 .service {
-  width: calc(33.33% - 20px); /* Afișăm 3 carduri pe rând, scăzând marginul de 20px */
   margin-bottom: 20px;
+  margin-right: 20px;
   background-color: #fff; /* Fondul cardului */
   border-radius: 10px; /* Rotunjirea colțurilor cardului */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Umbră sub card */
@@ -19,33 +37,6 @@
   transform: scale(1.05); /* Efect de mărire la hover */
 }
 
-.service p {
-  margin: 5px 0;
-}
-
 .service button {
   margin-top: 10px;
-}
-
-@media (max-width: 992px) {
-  .service {
-    width: calc(50% - 20px); /* La dimensiuni mai mici, afișăm 2 carduri pe rând */
-  }
-}
-
-@media (max-width: 768px) {
-  .service {
-    width: calc(100% - 20px); /* La dimensiuni mai mici, afișăm un singur card pe rând */
-  }
-}
-
-.page-title-background {
-  padding: 20px; /* Add more padding for better spacing */
-  background-color: #fff; /* Set the background color of the title to white */
-  text-align: center;
-  opacity: 0.9;
-  border-radius: 5px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 25px;
-  font-weight: 900;
 }

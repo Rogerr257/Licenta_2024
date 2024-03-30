@@ -35,6 +35,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { SendRequestComponent } from './send-request/send-request.component';
+import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SendRequestComponent } from './send-request/send-request.component';
     ClientDetailsComponent,
     JobLocationTimeComponent,
     SendRequestComponent,
+    ServiceRequestDetailsComponent,
   ],
   imports: [
     FormsModule,

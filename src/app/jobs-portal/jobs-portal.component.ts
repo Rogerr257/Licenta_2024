@@ -10,6 +10,7 @@ import {
   Firestore,
   query,
   where,
+  addDoc
 } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 
@@ -40,22 +41,23 @@ export class JobsPortalComponent {
           where('email', '==', this.userId.email)
         )
       ) as Observable<any[]>;
-
+  
       // this.servicesRequests = collectionData(this.servicesRequestsCollection) as Observable<any[]>;
       this.servicesRequests.subscribe((data: any) => {
         this.allServicesData = data;
       });
     });
 
-    setTimeout(function(){
-    },1000);
-
   }
 
-  applyForService(service: any, email: any) {
+  async applyForService() {
     // Implement your logic to open a popup and send an offer
     // You can use a library like Angular Material Dialog for the popup
     // You can also use Angular forms to get user input for the offer message
-    console.log('Applying for service:', service);
+    // console.log('Applying for service:', service);
+
+    const taskCollection = collection(this.firestore, `serviceRequests`);
+    await addDoc(taskCollection, { ...this.allServicesData[0] });
+
   }
 }

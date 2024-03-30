@@ -3,8 +3,7 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 10px;
-  opacity: 0.9;
-  background-color: rgb(237, 233, 233); /* Semi-transparent white background */
+  background-color: white; /* Semi-transparent white background */
 }
 
 .mesajServicii {
