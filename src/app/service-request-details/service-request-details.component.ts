@@ -4,6 +4,7 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { FirebaseService } from '../services/firebase.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
 import { EmailService } from '../services/email.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-service-request-details',
@@ -28,21 +29,34 @@ export class ServiceRequestDetailsComponent implements OnInit {
     this.cerereDeServiciuComplet = this.cerereDeServiciuInFormare.InformatiiPentruCerere;
   }
 
-  trimiteCererea() {
+  salveazaCerereaInBazaDeDate() {
+    this.firebaseService.submitRequest({
+      identificatorUnic: uuidv4(),
+       ...this.cerereDeServiciuComplet
+       }
+     );
+  }
 
-    this.firebaseService.submitRequest(this.cerereDeServiciuComplet);
+  trimiteMailCuCererea() {
+    this.emailService.sendEmail(this.cerereDeServiciuComplet);
 
-    // this.emailService.sendEmail(this.name, this.email, this.message).subscribe(
-    //   (response) => {
-    //     console.log('Email sent successfully!');
-    //   },
-    //   (error) => {
-    //     console.log('Error sending email:', error);
-    //   }
-    // );
+    // trimitem mail la toti profesionistii
+    const profesionisti: any = []; // filtrati dupa meserie
+    for (const profesionist of profesionisti) {
+
+      const data = Object.assign(this.cerereDeServiciuComplet, {
+        email: profesionist.email
+      });
+      this.emailService.sendEmail(data);
+    }
 
     this.router.navigate(['/home-client']);
-    // thank you for using Mesteri la un Click, ceva de genul dupa ce ce ai trimis mailul
+  }
+
+  trimiteCerereaSiSalveaza() {
+
+    this.salveazaCerereaInBazaDeDate();
+    this.trimiteMailCuCererea();
   }
 
 

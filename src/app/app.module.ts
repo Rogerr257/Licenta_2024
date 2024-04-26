@@ -18,7 +18,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { JobSelectionComponent } from './job-selection/job-selection.component';
-import { HomeProfessionalComponent } from './home-professional/home-professional.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
@@ -34,11 +33,11 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
+import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeProfessionalComponent,
     HomeClientComponent,
     JobSelectionComponent,
     JobsPortalComponent,
@@ -46,6 +45,7 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
     ClientDetailsComponent,
     JobLocationTimeComponent,
     ServiceRequestDetailsComponent,
+    PortalServiceComponent,
   ],
   imports: [
     FormsModule,

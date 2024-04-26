@@ -7,7 +7,7 @@ import { AlertifyService } from './alertify.service';
 export class ServiceRequestInfoService {
   public InformatiiPentruCerere: any = {};
 
-  constructor( private alertifyService: AlertifyService,) { }
+  constructor( private alertifyService: AlertifyService ) { }
 
   updateUserDetails(informatiiNoi: any) {
     this.InformatiiPentruCerere = { ...this.InformatiiPentruCerere, ...informatiiNoi };

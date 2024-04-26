@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
 import {
   collection,
   Firestore,
-  updateDoc,
   collectionData,
 } from '@angular/fire/firestore';
 
@@ -23,7 +22,8 @@ export class HomeClientComponent {
     private router: Router,
     private firestore: Firestore,
     private userService: AuthService,
-    private cerereDeServiciuInFormare: ServiceRequestInfoService
+    private cerereDeServiciuInFormare: ServiceRequestInfoService,
+    
   ) {
     this.userService.getCurrentUser().subscribe((user) => {
       this.clientAplicatie = user;

@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {
@@ -10,8 +6,7 @@ import {
   collectionData,
   Firestore,
   query,
-  where,
-  addDoc
+  where
 } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 
@@ -51,9 +46,12 @@ export class JobsPortalComponent {
 
   }
 
-  async aplica(serviciu: string) {
+  async aplica(serviciuComplet: any) {
 
-    // this.router.navigate(['/service-request-details', serviciu]);
+    this.router.navigate(['/portal-service', serviciuComplet.identificatorUnic], { queryParams: { serviciuDinPortal: serviciuComplet } });
+
+    // luam din db dupa id ul unic ??? sau cum puyrm face, cred ca doar asa
+
     // const taskCollection = collection(this.firestore, `serviceRequests`);
     // await addDoc(taskCollection, { ...this.allServicesData[0] });
   }
