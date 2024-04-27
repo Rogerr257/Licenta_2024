@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-service-request-details',
   templateUrl: './service-request-details.component.html',
-  styleUrls: ['./service-request-details.component.css']
+  styleUrls: ['./service-request-details.component.css'],
 })
 export class ServiceRequestDetailsComponent implements OnInit {
   name: any;
@@ -26,43 +26,59 @@ export class ServiceRequestDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cerereDeServiciuComplet = this.cerereDeServiciuInFormare.InformatiiPentruCerere;
+    this.cerereDeServiciuComplet =
+      this.cerereDeServiciuInFormare.InformatiiPentruCerere;
   }
 
   salveazaCerereaInBazaDeDate() {
     this.firebaseService.submitRequest({
       identificatorUnic: uuidv4(),
-       ...this.cerereDeServiciuComplet
-       }
-     );
+      ...this.cerereDeServiciuComplet,
+    });
   }
 
   trimiteMailCuCererea() {
-    this.emailService.sendEmail(this.cerereDeServiciuComplet);
+    this.emailService
+      .sendEmail({
+        scopMail: 'confirmare Client',
+        ...this.cerereDeServiciuComplet,
+      })
+      .subscribe(
+        () => {
+          console.log('Email sent successfully!');
+        },
+        (error) => {
+          console.log('Error sending email:', error);
+        }
+      );
 
     // trimitem mail la toti profesionistii
     const profesionisti: any = []; // filtrati dupa meserie
     for (const profesionist of profesionisti) {
-
       const data = Object.assign(this.cerereDeServiciuComplet, {
-        email: profesionist.email
+        email: profesionist.email,
       });
-      this.emailService.sendEmail(data);
+
+      this.emailService.sendEmail(data).subscribe(
+        () => {
+          console.log('Email sent successfully!');
+        },
+        (error) => {
+          console.log('Error sending email:', error);
+        }
+      );
     }
 
     this.router.navigate(['/home-client']);
   }
 
   trimiteCerereaSiSalveaza() {
-
     this.salveazaCerereaInBazaDeDate();
     this.trimiteMailCuCererea();
   }
-
 
   back() {
     // Redirect the user to the selection-page1 component
     this.router.navigate(['/home-client']);
   }
-
 }

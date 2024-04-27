@@ -28,17 +28,17 @@ export class JobsPortalComponent {
       this.userId = user;
       this.servicesRequestsCollection = collection(
         this.firestore,
-        'serviceRequests'
+        'cereriDeServicii'
       );
     
       this.servicesRequests = collectionData(
         query(
           this.servicesRequestsCollection,
-          where('email', '==', this.userId.email)
+          where('mailClient', '==', this.userId.email)
         )
       ) as Observable<any[]>;
   
-      // this.servicesRequests = collectionData(this.servicesRequestsCollection) as Observable<any[]>;
+      this.servicesRequests = collectionData(this.servicesRequestsCollection) as Observable<any[]>;
       this.servicesRequests.subscribe((data: any) => {
         this.allServicesData = data;
       });
@@ -47,12 +47,6 @@ export class JobsPortalComponent {
   }
 
   async aplica(serviciuComplet: any) {
-
-    this.router.navigate(['/portal-service', serviciuComplet.identificatorUnic], { queryParams: { serviciuDinPortal: serviciuComplet } });
-
-    // luam din db dupa id ul unic ??? sau cum puyrm face, cred ca doar asa
-
-    // const taskCollection = collection(this.firestore, `serviceRequests`);
-    // await addDoc(taskCollection, { ...this.allServicesData[0] });
+    this.router.navigate(['/jobs-portal-details', serviciuComplet.identificatorUnic]);
   }
 }

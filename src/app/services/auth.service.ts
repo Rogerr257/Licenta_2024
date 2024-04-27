@@ -5,18 +5,17 @@ import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  utilizatori: any = [];
-  users: any[] = [];
-
   constructor(
     private afAuth: AngularFireAuth, // Inject Firebase auth service
     private alertifyService: AlertifyService,
-    private router: Router
+    private router: Router,
+    private firestore: Firestore
   ) {}
 
   // Sign in with Google
@@ -24,10 +23,27 @@ export class AuthService {
     this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
+  // Method to save user information in Firestore collection
+  async saveUserToFirestore(user: firebase.User): Promise<void> {
+    const userRef = doc(this.firestore, `users/${user.uid}`);
+    const userDoc = await getDoc(userRef);
+
+    if (!userDoc.exists()) {
+      await setDoc(userRef, {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        isAdmin: false,
+        isProfessional: false,
+        isClient: false
+      });
+    }
+  }
 
   authStateFunction(user: any): void {
     if (user) {
-      // this.alertifyService.success('error');
+      // Save user to Firestore upon logout
+      this.saveUserToFirestore(user);
     } else {
       this.alertifyService.success('Logged Out');
       this.router.navigate(['/']);
@@ -57,6 +73,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  getProfUserJobs(): any {
+    
   }
 
   // Auth logic to run auth providers

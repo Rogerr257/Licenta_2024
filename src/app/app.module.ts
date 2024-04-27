@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';;
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -34,6 +36,7 @@ import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
+import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-detail
     JobLocationTimeComponent,
     ServiceRequestDetailsComponent,
     PortalServiceComponent,
+    ProfessionalServicesComponent,
   ],
   imports: [
     FormsModule,
@@ -57,6 +61,7 @@ import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-detail
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatInputModule,
     MatCardModule,
     MatGridListModule,

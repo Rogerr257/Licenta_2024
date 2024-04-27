@@ -32,23 +32,6 @@ export class HomeClientComponent {
 
   ngOnInit() {
     this.getData();
-
-    // await addDoc(usersCollection, {
-    //   email: utilizatorNou.email,
-    //   isClient: true,
-    //   isProfessional: true,
-    //   isAdmin: true,
-    // });
-
-    // const utilizatorExistent = this.users.find(
-    //   (item: any) => item.email === utilizatorNou.email
-    // );
-    // usersCollection = collection(this.firestore, 'users');
-    // collectionData(usersCollection).subscribe((users) => {
-    //   console.log('buna');
-    //   console.log(this.users);
-    //   this.users = users;
-    // });
   }
 
   onItemClick(serviciulSelectat: any) {

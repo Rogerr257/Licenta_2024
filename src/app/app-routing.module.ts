@@ -7,7 +7,8 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { JobLocationTimeComponent } from './job-location-time/job-location-time.component';
 import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
-import { PortalServiceComponent } from './jobs-portal-details/portal-service.component';
+import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
+import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home-client', pathMatch: 'full' },
@@ -17,8 +18,9 @@ const routes: Routes = [
   { path: 'location-time-details', component: JobLocationTimeComponent },
   { path: 'client-details', component: ClientDetailsComponent },
   { path: 'portal', component: JobsPortalComponent },
-  { path: 'portal-service/:identificatorUnic', component: PortalServiceComponent },
-  { path: 'service-request-details', component: ServiceRequestDetailsComponent }
+  { path: 'jobs-portal-details/:identificatorUnic', component: PortalServiceComponent },
+  { path: 'service-request-details', component: ServiceRequestDetailsComponent },
+  { path: 'profesiile-mele', component: ProfessionalServicesComponent }
 ];
 
 @NgModule({

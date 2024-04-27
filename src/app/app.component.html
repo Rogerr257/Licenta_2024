@@ -1,34 +1,65 @@
 <mat-toolbar class="navbar-settings">
-  
   <h1 class="title-color">Meșteri la un click</h1>
   <span class="user-details">
-    <img src="assets/images/homePage.jpeg">
+    <img src="assets/images/homePage.jpeg" />
 
-    <!-- doar daca ai cont de profesionist apare asta -->
-    <button mat-button *ngIf="!user.isProfessional" (click)="navigateToPortal()" class="float-right button_hovering">
-      {{ "Mergi la Contul de Profesionist" }}
+    <button
+      mat-button
+      (click)="navigateToClientRequestSelection()"
+      class="float-right button_hovering"
+      [ngClass]="{ 'special-style': isClientAccount && !isWorkerAccount }"
+    >
+      {{ "Cont Client" }}
     </button>
 
- 
-    <button mat-button *ngIf="!user.isClient" (click)="navigateToClientRequestSelection()" class="float-right button_hovering">
-      {{ "Mergi la Contul de Client" }}
+    <button
+      mat-button
+      (click)="navigateToWorkerPortal()"
+      class="float-right button_hovering"
+      [ngClass]="{ 'special-style': !isClientAccount && isWorkerAccount }"
+    >
+      {{ "Cont Meserias" }}
     </button>
 
-    <!-- daca nu ai cont de profesionist -->
-    <!-- <button mat-button *ngIf="!isLoggedAsProfessional" (click)="loginMethod()" class="float-right button_hovering">
-      {{ "Inscrie-te ca Profesionist" }}
-    </button> -->
+    <button
+      mat-button
+      *ngIf="!isClientAccount && isWorkerAccount"
+      (click)="navigateToWorkerSkills()"
+      class="float-right button_hovering"
+      [ngClass]="{ 'special-style': isSkillsTab }"
+    >
+      {{ "Profesiile Mele" }}
+    </button>
 
-    <button mat-button [hidden]="isLoggedInAsClient" (click)="loginMethod()" class="float-right button_hovering">
+    <button
+      mat-button
+      *ngIf="!isClientAccount && isWorkerAccount"
+      (click)="navigateToWorkerPortal()"
+      class="float-right button_hovering"
+      [ngClass]="{ 'special-style': isServicesTab }"
+    >
+      {{ "Cereri Disponibile" }}
+    </button>
+
+    <button
+      mat-button
+      [hidden]="isLoggedIn"
+      (click)="loginMethod()"
+      class="float-right button_hovering"
+    >
       <mat-icon>login</mat-icon>
       {{ "Conectare" }}
     </button>
 
-    <button mat-button *ngIf="isLoggedInAsClient" (click)="logoutMethod()" class="float-right button_hovering">
+    <button
+      mat-button
+      *ngIf="isLoggedIn"
+      (click)="logoutMethod()"
+      class="float-right button_hovering"
+    >
       <mat-icon>logout</mat-icon>
       {{ "Deconectare" }}
     </button>
-
   </span>
 </mat-toolbar>
 

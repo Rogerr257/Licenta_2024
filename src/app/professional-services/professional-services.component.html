@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="content">
+    <h1 class="page-title">Selectează profesiile tale</h1>
+    <div class="service-list">
+      <div *ngFor="let service of serviciilePrimare" class="service-item">
+        <label class="service-label">
+          {{ service.name }}
+          <mat-checkbox [(ngModel)]="service.selected" (change)="onServiceToggle(service)"></mat-checkbox>
+        </label>
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="salveazaProfesiile()">Salvează Meseriile</button>
+    </div>
+  </div>
+</div>
