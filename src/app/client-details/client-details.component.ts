@@ -23,8 +23,6 @@ export class ClientDetailsComponent {
         email: '',
         telefon: ''
       };
-
-      // de fapt putem pune iar clientul sa completeze mailul dar sa vedem cu logarea cand o sa conteze
   }
 
   salveazaDetalii() {

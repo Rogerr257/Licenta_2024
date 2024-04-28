@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +19,13 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private afAuth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
+
+  toggleButtonVisibility() {
+    this.sharedService.toggleButtonVisibility();
+  }
 
   ngOnInit() {
     this.afAuth.authState.subscribe((user) => {
@@ -38,6 +44,7 @@ export class AppComponent {
   logoutMethod(): void {
     this.authService.logoutServiceMethod();
     this.isLoggedIn = false;
+    // this.toggleButtonVisibility()
   }
 
   navigateToClientRequestSelection() {

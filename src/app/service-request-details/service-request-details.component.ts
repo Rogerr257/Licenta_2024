@@ -5,6 +5,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
 import { EmailService } from '../services/email.service';
 import { v4 as uuidv4 } from 'uuid';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-service-request-details',
@@ -12,10 +13,10 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./service-request-details.component.css'],
 })
 export class ServiceRequestDetailsComponent implements OnInit {
-  name: any;
-  email: any;
-  message: any;
-  cerereDeServiciuComplet: any;
+  cerereDeServiciuCompletInFormare: any;
+  mailClient: any;
+  serviciuPrincipal: any;
+  potriviri: any;
 
   constructor(
     private router: Router,
@@ -25,46 +26,66 @@ export class ServiceRequestDetailsComponent implements OnInit {
     private emailService: EmailService
   ) {}
 
+  
   ngOnInit() {
-    this.cerereDeServiciuComplet =
-      this.cerereDeServiciuInFormare.InformatiiPentruCerere;
+    this.cerereDeServiciuCompletInFormare = this.cerereDeServiciuInFormare.InformatiiPentruCerere;
+    this.mailClient = this.cerereDeServiciuInFormare.InformatiiPentruCerere.mailClient;
+    this.serviciuPrincipal = this.cerereDeServiciuInFormare.InformatiiPentruCerere.serviciuPrincipal;
+
+    const meseriiProfesionistiReferintaColectie = collection(
+      this.firestore,
+      'meseriiProfesionisti'
+    );
+
+    const meseriileProfesionistilor = collectionData(meseriiProfesionistiReferintaColectie) as Observable<any[]>;
+    meseriileProfesionistilor.subscribe((meserii: any) => {
+      
+        this.potriviri = meserii.filter((meserie: any) =>
+        meserie.serviciu === this.serviciuPrincipal &&
+        meserie.selectate === true 
+      );
+    });
+
   }
+
 
   salveazaCerereaInBazaDeDate() {
     this.firebaseService.submitRequest({
       identificatorUnic: uuidv4(),
-      ...this.cerereDeServiciuComplet,
+      ...this.cerereDeServiciuCompletInFormare,
     });
   }
 
-  trimiteMailCuCererea() {
+  trimiteMailuriCuCererea() {
     this.emailService
       .sendEmail({
         scopMail: 'confirmare Client',
-        ...this.cerereDeServiciuComplet,
+        personToEmail: this.mailClient,
+        ...this.cerereDeServiciuCompletInFormare,
       })
       .subscribe(
         () => {
-          console.log('Email sent successfully!');
+          console.log('Confirmation Email sent successfully!');
         },
         (error) => {
-          console.log('Error sending email:', error);
+          console.log('Error sending Confirmation Email:', error);
         }
       );
 
-    // trimitem mail la toti profesionistii
-    const profesionisti: any = []; // filtrati dupa meserie
-    for (const profesionist of profesionisti) {
-      const data = Object.assign(this.cerereDeServiciuComplet, {
-        email: profesionist.email,
-      });
-
-      this.emailService.sendEmail(data).subscribe(
+    // se trimite mail la toti meseriasii filtrati dupa meserie excluzand pe cel logat
+    for (const meserias of this.potriviri) {
+      this.emailService.sendEmail(
+        {
+          scopMail: 'Trimitere mail la meserias',
+          personToEmail: meserias.email,
+          ...this.cerereDeServiciuCompletInFormare,
+        }
+      ).subscribe(
         () => {
-          console.log('Email sent successfully!');
+          console.log('Email to Meserias sent successfully!');
         },
         (error) => {
-          console.log('Error sending email:', error);
+          console.log('Error sending email to Meserias:', error);
         }
       );
     }
@@ -74,7 +95,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
 
   trimiteCerereaSiSalveaza() {
     this.salveazaCerereaInBazaDeDate();
-    this.trimiteMailCuCererea();
+    this.trimiteMailuriCuCererea();
   }
 
   back() {

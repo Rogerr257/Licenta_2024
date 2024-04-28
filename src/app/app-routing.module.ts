@@ -9,22 +9,71 @@ import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
+import {
+  AuthGuard,
+  redirectUnauthorizedTo,
+  hasCustomClaim,
+} from '@angular/fire/auth-guard';
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['/home-client']);
+const adminOnly = () => hasCustomClaim('admin');
 
 const routes: Routes = [
   { path: '', redirectTo: '/home-client', pathMatch: 'full' },
   { path: 'home-client', component: HomeClientComponent },
-  { path: 'selection', component: JobSelectionComponent },
-  { path: 'additional-details', component: JobDetailsComponent },
-  { path: 'location-time-details', component: JobLocationTimeComponent },
-  { path: 'client-details', component: ClientDetailsComponent },
-  { path: 'portal', component: JobsPortalComponent },
-  { path: 'jobs-portal-details/:identificatorUnic', component: PortalServiceComponent },
-  { path: 'service-request-details', component: ServiceRequestDetailsComponent },
-  { path: 'profesiile-mele', component: ProfessionalServicesComponent }
+  {
+    path: 'selection',
+    component: JobSelectionComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    // data: { authGuardPipe: adminOnly  }
+  },
+  {
+    path: 'additional-details',
+    component: JobDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'location-time-details',
+    component: JobLocationTimeComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'client-details',
+    component: ClientDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'portal',
+    component: JobsPortalComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'jobs-portal-details/:identificatorUnic',
+    component: PortalServiceComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'service-request-details',
+    component: ServiceRequestDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'profesiile-mele',
+    component: ProfessionalServicesComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

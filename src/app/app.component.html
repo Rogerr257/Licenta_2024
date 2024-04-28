@@ -43,7 +43,7 @@
 
     <button
       mat-button
-      [hidden]="isLoggedIn"
+      *ngIf="!isLoggedIn"
       (click)="loginMethod()"
       class="float-right button_hovering"
     >

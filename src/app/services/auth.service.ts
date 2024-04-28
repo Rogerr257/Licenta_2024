@@ -95,18 +95,18 @@ export class AuthService {
     // function that returns an Observable<firebase.User | null> based on the informations of the logged user
   }
 
-  canActivate(): Observable<boolean> {
-    return this.getCurrentUser().pipe(
-      map((user) => {
-        if (user) {
-          return true;
-        } else {
-          this.router.navigate(['/']);
-          return false;
-        }
-      })
-    );
-  }
+  // canActivate(): Observable<boolean> {
+  //   return this.getCurrentUser().pipe(
+  //     map((user) => {
+  //       if (user) {
+  //         return true;
+  //       } else {
+  //         this.router.navigate(['/home-client']);
+  //         return false;
+  //       }
+  //     })
+  //   );
+  // }
 
   getProfUserJobs(): any {
     
