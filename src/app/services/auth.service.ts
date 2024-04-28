@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertifyService } from './alertify.service';
 import firebase from 'firebase/compat/app';
-import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Observable, firstValueFrom } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Firestore, collection, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, getDoc, setDoc, addDoc , query, where} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +37,40 @@ export class AuthService {
         isProfessional: false,
         isClient: false
       });
+
+      const dateNecesare = await this.getData(user.email);
+      //console.log(dateNecesare);
     }
+  }
+
+  async getData(email: any): Promise<any> {
+
+      let aServiciiBaza: any = [];
+      let aMeseriileUnuiAsociat: any = [];
+
+      const colectieServiciiBaza = collection(this.firestore, 'servicii-de-baza');
+      const colectieServiciiBazaAsociate = collection(this.firestore, 'meseriiProfesionisti');
+
+      const refServiciiBaza = collectionData(colectieServiciiBaza) as Observable<any[]>;
+      const refMeseriileUnuiAsociat = collectionData(colectieServiciiBazaAsociate) as Observable<any[]>;
+
+      aServiciiBaza = await firstValueFrom(refServiciiBaza);
+      aMeseriileUnuiAsociat = await firstValueFrom(refMeseriileUnuiAsociat);
+
+      for (const serviciu of aServiciiBaza) {
+        const meserie = {
+          email: email,
+          serviciu: serviciu.nume,
+          selectate: false
+        }
+        //await addDoc(colectieServiciiBazaAsociate, meserie);
+      }
+
+      return {
+        meseriileAsociate: aMeseriileUnuiAsociat,
+        serviciiBaza: aServiciiBaza
+      };
+   
   }
 
   authStateFunction(user: any): void {

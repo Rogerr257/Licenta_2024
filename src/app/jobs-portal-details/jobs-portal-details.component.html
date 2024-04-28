@@ -1,12 +1,8 @@
-<div class="container">
-    <h1 class="page-title">Detaliere Serviciu Dorit</h1>
+<div *ngIf="cerereDeServiciuComplet" class="container">
+    <h1 class="page-title">Detaliere oportunitate </h1>
     <div class="service-details">
       <div class="detail-item">
-        <span class="label">Serviciu principal:</span>
-        <span class="value">{{ cerereDeServiciuComplet.serviciuPrincipal }}</span>
-      </div>
-      <div class="detail-item">
-        <span class="label">Serviciu secundar:</span>
+        <span class="label">Serviciul:</span>
         <span class="value">{{ cerereDeServiciuComplet.serviciu_secundar }}</span>
       </div>
       <div class="detail-item">
@@ -41,9 +37,6 @@
         <span class="label">Telefon:</span>
         <span class="value">{{ cerereDeServiciuComplet.telefon }}</span>
       </div>
-    </div>
-    <div class="submit-button-wrapper">
-      <button mat-raised-button color="primary" (click)="aplicaPentruCerere()">Aplica pentru serviciu</button>
     </div>
   </div>
   

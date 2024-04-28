@@ -1,75 +1,102 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 import {
   Firestore,
   collection,
-  collectionData,
   query,
   where,
+  updateDoc,
+  doc,
+  getDocs,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { ServiceRequestInfoService } from '../services/service-request-info.service';
-interface Service {
-  name: string;
-  selected: boolean;
+import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
+
+interface DocumentWithId {
+  id: string;
 }
 
 @Component({
   selector: 'app-professional-services',
   templateUrl: './professional-services.component.html',
-  styleUrls: ['./professional-services.component.css']
+  styleUrls: ['./professional-services.component.css'],
 })
 export class ProfessionalServicesComponent {
-  serviciulSelectat: string = '';
+  userId: any;
   // serviciilePrimare: any;
-  serviciilePrimare: Service[] = [
-    { name: 'Serviciu 1', selected: false },
-    { name: 'Serviciu 2', selected: false },
-    { name: 'Serviciu 3', selected: false },
-    // Add more services as needed
-  ];
-
+  serviciiAsociateMeserias: any;
+  documentIds: string[] = [];
 
   constructor(
     private router: Router,
-    private activatedRoute: ActivatedRoute,
     private firestore: Firestore,
-    private serviceRequest: ServiceRequestInfoService
+    private userService: AuthService
   ) {}
 
   ngOnInit() {
-    this.getItems().subscribe((items) => {
-      // this.serviciilePrimare = items;
+    this.userService.getCurrentUser().subscribe((user) => {
+      this.userId = user;
+
+      this.getItems().subscribe((items: any) => {
+        this.serviciiAsociateMeserias = items;
+      });
+
+      // this.getDocumentIds("meseriiProfesionisti");
     });
   }
 
-  getItems(): Observable<any[]> {
-    const collectionInstance = collection(this.firestore, 'servicii-de-baza');
-    const filteredQuery = query(
-      collectionInstance
+  // async getDocumentIds(collectionName: string): Promise<void> {
+  //   const queryAll = query(collection(this.firestore, collectionName),  where('email', '==', this.userId.email));
+  //   const querySnapshot = await getDocs(queryAll);
+    
+  //   querySnapshot.forEach((doc) => {
+  //     this.documentIds.push(doc.id);
+  //   });
+  // }
+
+  getItems(): any {
+    const collectionInstance = collection(this.firestore, 'meseriiProfesionisti');
+    const filteredQuery = query(collectionInstance, where('email', '==', this.userId.email));
+  
+    return from(getDocs(filteredQuery)).pipe(
+      map((querySnapshot: any) => {
+        const documents: DocumentWithId[] = [];
+  
+        querySnapshot.forEach((doc: any) => {
+          documents.push({ id: doc.id, ...doc.data() });
+        });
+  
+        return documents;
+      })
     );
-
-    // const filteredQuery = query(
-    //   collectionInstance,
-    //   where('serviciu', '==', this.serviciulSelectat)
-    // );
-
-    return collectionData(filteredQuery);
   }
 
-  onServiceToggle(service: Service) {
-    // No need to toggle, just update the selected state based on the checkbox value
-    // service.selected = !service.selected;
-  }
+  // getItems(): Observable<any[]> {
+  //   const collectionInstance = collection(
+  //     this.firestore,
+  //     'meseriiProfesionisti'
+  //   );
+  //   const filteredQuery = query(
+  //     collectionInstance,
+  //     where('email', '==', this.userId.email)
+  //   );
+
+  //   return collectionData(filteredQuery);
+  // }
 
   backToHome() {
     this.router.navigate(['/home-client']);
   }
 
-  salveazaProfesiile() {
-    // Implement saving logic here
-    console.log('Selected services:', this.serviciilePrimare.filter(service => service.selected));
+  async salveazaProfesiile() {
+    // Iterate through each service and update its corresponding document
+    this.serviciiAsociateMeserias.forEach(async (service: any) => {
+      const docRef = doc(
+        this.firestore,
+        `meseriiProfesionisti/${service.id}`
+      );
+      await updateDoc(docRef, { selectate: service.selectate });
+    });
   }
-  
 }

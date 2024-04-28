@@ -31,13 +31,11 @@ export class JobSelectionComponent {
     const serviciuPrincipalName = this.activatedRoute.snapshot.queryParams['serviciulSelectat'];
     this.serviciulSelectat = serviciuPrincipalName;
 
-    // ne subscriem la observabil pentru a lua datele din el
     this.getItems().subscribe((items) => {
       this.serviciilePrimare = items;
     });
   }
 
-  //se preia elementele din baza de date folosind observables
   getItems(): Observable<any[]> {
     const collectionInstance = collection(this.firestore, 'servicii-secundare');
     const filteredQuery = query(

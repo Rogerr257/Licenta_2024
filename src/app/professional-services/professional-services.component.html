@@ -1,11 +1,11 @@
-<div class="container">
+<div *ngIf="serviciiAsociateMeserias" class="container">
   <div class="content">
     <h1 class="page-title">Selectează profesiile tale</h1>
     <div class="service-list">
-      <div *ngFor="let service of serviciilePrimare" class="service-item">
+      <div *ngFor="let service of serviciiAsociateMeserias" class="service-item">
         <label class="service-label">
-          {{ service.name }}
-          <mat-checkbox [(ngModel)]="service.selected" (change)="onServiceToggle(service)"></mat-checkbox>
+          <mat-checkbox [(ngModel)]="service.selectate"></mat-checkbox>
+          {{ service.serviciu }}
         </label>
       </div>
     </div>

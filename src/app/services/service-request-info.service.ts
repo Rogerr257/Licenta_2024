@@ -11,7 +11,7 @@ export class ServiceRequestInfoService {
 
   updateUserDetails(informatiiNoi: any) {
     this.InformatiiPentruCerere = { ...this.InformatiiPentruCerere, ...informatiiNoi };
-    console.log(this.InformatiiPentruCerere);
+    // console.log(this.InformatiiPentruCerere);
     // this.alertifyService.success(this.InformatiiPentruCerere);
   }
 }
