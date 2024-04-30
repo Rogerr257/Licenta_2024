@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
-import {
-  collection,
-  Firestore,
-  updateDoc,
-  collectionData,
-} from '@angular/fire/firestore';
+import { collection, Firestore, collectionData } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Subscription } from 'rxjs';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-home-client',
@@ -15,57 +13,64 @@ import {
   styleUrls: ['./home-client.component.css'],
 })
 export class HomeClientComponent {
-  homeItems: any;
-  mainService: any;
-  userId: any;
+  serviciiPrimare: any;
+  serviciuPrincipal: any;
+  clientAplicatie: any;
+  buttonAppearence = true;
+  private subscription: Subscription;
 
   constructor(
     private router: Router,
     private firestore: Firestore,
-    private userService: AuthService,
-    private serviceRequest: ServiceRequestInfoService
+    private authService: AuthService,
+    private cerereDeServiciuInFormare: ServiceRequestInfoService,
+    private afAuth: AngularFireAuth,
+    private sharedService: SharedService
   ) {
-    this.userService.getCurrentUser().subscribe((user) => {
-      this.userId = user;
-    })
+    this.subscription = this.sharedService.buttonVisible$.subscribe(
+      (visible) => {
+        this.buttonAppearence = visible;
+      }
+    );
   }
 
   ngOnInit() {
     this.getData();
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.clientAplicatie = user;
+      }
+    });
 
-    // await addDoc(usersCollection, {
-    //   email: utilizatorNou.email,
-    //   isClient: true,
-    //   isProfessional: true,
-    //   isAdmin: true,
-    // });
-
-    // const utilizatorExistent = this.users.find(
-    //   (item: any) => item.email === utilizatorNou.email
-    // );
-    // console.log('pa');
-
-    // usersCollection = collection(this.firestore, 'users');
-    // collectionData(usersCollection).subscribe((users) => {
-    //   console.log('buna');
-    //   console.log(this.users);
-    //   this.users = users;
+    // this.authService.getCurrentUser().subscribe((user) => {
+    //   this.clientAplicatie = user;
+    //   console.log(this.clientAplicatie.email);
     // });
   }
 
-  onItemClick(item: any) {
-    this.mainService = item.nume;
+  onItemClick(serviciulSelectat: any) {
+    this.serviciuPrincipal = serviciulSelectat.nume;
 
-    this.serviceRequest.userDetails = {
-      mainService: this.mainService,
-      userMail: this.userId.email,
+    this.cerereDeServiciuInFormare.InformatiiPentruCerere = {
+      serviciuPrincipal: this.serviciuPrincipal,
+      mailClient: this.clientAplicatie.email,
     };
 
-    this.router.navigate(['/selection'], { queryParams: { item: item.nume } });
+    this.router.navigate(['/selection'], {
+      queryParams: { serviciulSelectat: serviciulSelectat.nume },
+    });
   }
 
   getData() {
     const collectionInstance = collection(this.firestore, 'servicii-de-baza');
-    this.homeItems = collectionData(collectionInstance);
+    this.serviciiPrimare = collectionData(collectionInstance);
+  }
+
+  loginMethodFromHomeClient(): void {
+    this.authService.loginWithGoogle();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

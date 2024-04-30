@@ -1,10 +1,10 @@
 <div class="container">
-  <h1 class="page-title-background">Servicii Disponibile</h1>
+  <h1 class="page-title-background">Oportunități de lucru disponibile</h1>
   <div class="service-list">
-    <div class="service" *ngFor="let service of servicesRequests | async">
+    <div class="service" *ngFor="let service of serviciiFiltrate">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{ service.mainService }}</mat-card-title>
+          <mat-card-title>{{ service.serviciuPrincipal }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p><strong>Serviciu</strong> {{ service.serviciu_secundar }}</p>
@@ -13,7 +13,7 @@
           <p><strong>Data:</strong> {{ service.dataSelectata }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="applyForService()">Aplica</button>
+          <button mat-raised-button color="primary" (click)="veziDetaliicOportunitate(service)">Vezi detalii serviciu</button>
         </mat-card-actions>
       </mat-card>
     </div>

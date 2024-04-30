@@ -1,9 +1,9 @@
 <div class="home-selection">
   <div class="homeForm">
-    <h2 class="mesajServicii">Ce tip de {{ item }} dorești?</h2>
+    <h2 class="mesajServicii">Ce tip de {{ serviciulSelectat }} dorești?</h2>
     <ul class="services-list">
-      <li *ngFor="let item of selections" class="service" (click)="onItemClick(item)">
-        {{ item.serviciu_secundar }}
+      <li *ngFor="let serviciu of serviciilePrimare" class="service" (click)="onItemClick(serviciu)">
+        {{ serviciu.serviciu_secundar }}
       </li>
     </ul>
 

@@ -17,8 +17,8 @@ import { ServiceRequestInfoService } from '../services/service-request-info.serv
   styleUrls: ['./job-selection.component.css'],
 })
 export class JobSelectionComponent {
-  item: string = '';
-  selections: any;
+  serviciulSelectat: string = '';
+  serviciilePrimare: any;
 
   constructor(
     private router: Router,
@@ -28,34 +28,32 @@ export class JobSelectionComponent {
   ) {}
 
   ngOnInit() {
-    const mainServiceName = this.activatedRoute.snapshot.queryParams['item'];
-    this.item = mainServiceName;
+    const serviciuPrincipalName = this.activatedRoute.snapshot.queryParams['serviciulSelectat'];
+    this.serviciulSelectat = serviciuPrincipalName;
 
-    // ne subscriem la observabil pentru a lua datele din el
     this.getItems().subscribe((items) => {
-      this.selections = items;
+      this.serviciilePrimare = items;
     });
   }
 
-  //se preia elementele din baza de date folosind observables
   getItems(): Observable<any[]> {
     const collectionInstance = collection(this.firestore, 'servicii-secundare');
     const filteredQuery = query(
       collectionInstance,
-      where('serviciu', '==', this.item)
+      where('serviciu', '==', this.serviciulSelectat)
     );
 
     return collectionData(filteredQuery);
   }
 
-  onItemClick(item: { serviciu: string; serviciu_secundar: string }) {
+  onItemClick(serviciulSelectat: { serviciu: string; serviciu_secundar: string }) {
 
     this.serviceRequest.updateUserDetails({
-      serviciu_secundar: item.serviciu_secundar
+      serviciu_secundar: serviciulSelectat.serviciu_secundar
     });
 
     this.router.navigate(['/location-time-details'], {
-      queryParams: { item: item.serviciu },
+      queryParams: { serviciulSelectat: serviciulSelectat.serviciu },
     });
   }
 

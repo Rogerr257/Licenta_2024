@@ -41,7 +41,6 @@
     transition-duration: 0.5s;
   }
 
-
   img {
     position: fixed;
     top: 0;
@@ -51,3 +50,9 @@
     z-index: -1;
   }
   
+  .special-style {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+  }

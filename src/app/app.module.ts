@@ -12,13 +12,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';;
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { JobSelectionComponent } from './job-selection/job-selection.component';
-import { HomeProfessionalComponent } from './home-professional/home-professional.component';
 import { HomeClientComponent } from './home-client/home-client.component';
 import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
@@ -31,24 +32,24 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
-
 import { environment } from '../environments/environment';
 import { AuthService } from './services/auth.service';
-import { SendRequestComponent } from './send-request/send-request.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
+import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
+import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeProfessionalComponent,
     HomeClientComponent,
     JobSelectionComponent,
     JobsPortalComponent,
     JobDetailsComponent,
     ClientDetailsComponent,
     JobLocationTimeComponent,
-    SendRequestComponent,
     ServiceRequestDetailsComponent,
+    PortalServiceComponent,
+    ProfessionalServicesComponent,
   ],
   imports: [
     FormsModule,
@@ -60,6 +61,7 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
     MatMenuModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatInputModule,
     MatCardModule,
     MatGridListModule,

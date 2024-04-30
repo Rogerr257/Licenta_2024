@@ -8,23 +8,33 @@ import { ServiceRequestInfoService } from '../services/service-request-info.serv
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent {
-  detalii_client: any;
+  detalii_client: {
+    nume: string,
+    prenume: string,
+    email: string,
+    telefon: string
+  };
 
-  constructor(private router: Router,
-    private serviceRequest: ServiceRequestInfoService){
+  constructor(private router: Router, private serviceRequest: ServiceRequestInfoService)
+  {
+      this.detalii_client = {
+        nume: '',
+        prenume: '',
+        email: '',
+        telefon: ''
+      };
+  }
 
-      this.detalii_client = null;
-    }
-
-  continue() {
+  salveazaDetalii() {
 
     this.serviceRequest.updateUserDetails({
-      detalii_client: this.detalii_client
+      nume: this.detalii_client.nume,
+      prenume: this.detalii_client.prenume,
+      email: this.detalii_client.email,
+      telefon: this.detalii_client.telefon
     });
 
-
-    //se redirectioneaza userul la pagina cu informatiile personale ale clientului care se completeaza in cerere
-    this.router.navigate(['/client-details']);
+    this.router.navigate(['/service-request-details']);
   }
 
   back() {

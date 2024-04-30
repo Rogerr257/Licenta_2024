@@ -46,8 +46,6 @@ export class JobLocationTimeComponent implements OnInit {
         (item: any) => item.judet === event.value
       );
     });
-
-    console.log(this.oraseleFiltrate);
     this.judetSelectat = event.value;
   }
 
@@ -71,7 +69,7 @@ export class JobLocationTimeComponent implements OnInit {
       dataSelectata: this.dataSelectata,
     });
 
-    // this.firebaseService.submitRequest(this.serviceRequest.userDetails);
+    // this.firebaseService.submitRequest(this.serviceRequest.InformatiiPentruCerere);
     this.router.navigate(['/additional-details']);
   }
   back() {

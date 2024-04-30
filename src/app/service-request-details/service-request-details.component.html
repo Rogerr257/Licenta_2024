@@ -1,17 +1,48 @@
-<!-- <div class="container">
-    <h1 class="page-title">Service Details</h1>
-    <div class="service-details">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ service.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p><strong>Location:</strong> {{ service.location }}</p>
-          <p><strong>Date:</strong> {{ service.date }}</p>
-          <p><strong>Additional Details:</strong> {{ service.details }}</p>
-       
-        </mat-card-content>
-      </mat-card>
+<div class="container">
+  <h1 class="page-title">Detaliere Serviciu Dorit</h1>
+  <div class="service-details">
+    <div class="detail-item">
+      <span class="label">Serviciu principal:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.serviciuPrincipal }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Serviciu secundar:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.serviciu_secundar }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Oras:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.orasSelectat }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Judet:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.judetSelectat }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Data:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.dataSelectata }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Detalii suplimentare:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.detalii_suplimentare }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Nume:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.nume }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Prenume:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.prenume }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Email:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.email }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Telefon:</span>
+      <span class="value">{{ cerereDeServiciuCompletInFormare.telefon }}</span>
     </div>
   </div>
-   -->
+  <div class="submit-button-wrapper">
+    <button mat-raised-button color="primary" (click)="trimiteCerereaSiSalveaza()">Trimite cererea</button>
+  </div>
+</div>
