@@ -44,7 +44,7 @@ export class AppComponent {
   logoutMethod(): void {
     this.authService.logoutServiceMethod();
     this.isLoggedIn = false;
-    // this.toggleButtonVisibility()
+    this.toggleButtonVisibility()
   }
 
   navigateToClientRequestSelection() {

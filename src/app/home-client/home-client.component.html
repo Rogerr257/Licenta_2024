@@ -10,8 +10,9 @@
         {{ item.nume }}
       </li>
     </ul>
-    <button *ngIf="!clientAplicatie"  mat-button class="conectare-btn" (click)="loginMethodFromHomeClient()">
-      {{ "Conectare" }}
-    </button>
+    <div *ngIf="!afisareMesajConectare" class="mesajLogare">
+      <p>Pentru a putea face o cerere,</p>
+      <p>vă rugăm să vă autentificați.</p>
+    </div>
   </div>
 </div>

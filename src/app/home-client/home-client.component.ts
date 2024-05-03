@@ -16,7 +16,7 @@ export class HomeClientComponent {
   serviciiPrimare: any;
   serviciuPrincipal: any;
   clientAplicatie: any;
-  buttonAppearence = true;
+  afisareMesajConectare = true;
   private subscription: Subscription;
 
   constructor(
@@ -29,7 +29,7 @@ export class HomeClientComponent {
   ) {
     this.subscription = this.sharedService.buttonVisible$.subscribe(
       (visible) => {
-        this.buttonAppearence = visible;
+        this.afisareMesajConectare = visible;
       }
     );
   }
@@ -64,10 +64,6 @@ export class HomeClientComponent {
   getData() {
     const collectionInstance = collection(this.firestore, 'servicii-de-baza');
     this.serviciiPrimare = collectionData(collectionInstance);
-  }
-
-  loginMethodFromHomeClient(): void {
-    this.authService.loginWithGoogle();
   }
 
   ngOnDestroy() {

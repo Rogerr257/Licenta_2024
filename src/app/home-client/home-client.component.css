@@ -55,19 +55,13 @@
   background-color: #007bff;
 }
 
-.conectare-btn {
-  display: block;
-  margin: 0 auto; /* Center the button horizontally */
-  margin-top: 20px; /* Add some top margin for spacing */
-  background-color: #007bff; /* Button background color */
-  color: white; /* Text color */
-  border: none; /* Remove button border */
-  border-radius: 5px; /* Add some border radius for rounded corners */
-  padding: 1px 60px; /* Padding for button content */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s; /* Smooth background color transition on hover */
-}
-
-.conectare-btn:hover {
-  background-color: #0056b3; /* Darker background color on hover */
+.mesajLogare {
+  text-align: center;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  background-color: #ccc;
+  border-radius: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 700;
 }
