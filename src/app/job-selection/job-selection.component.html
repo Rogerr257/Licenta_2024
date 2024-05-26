@@ -2,7 +2,7 @@
   <div class="homeForm">
     <h2 class="mesajServicii">Ce tip de {{ serviciulSelectat }} dorești?</h2>
     <ul class="services-list">
-      <li *ngFor="let serviciu of serviciilePrimare" class="service" (click)="onItemClick(serviciu)">
+      <li *ngFor="let serviciu of serviciileSecundare" class="service" (click)="onItemClick(serviciu)">
         {{ serviciu.serviciu_secundar }}
       </li>
     </ul>

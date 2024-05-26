@@ -5,6 +5,15 @@
 
     <button
       mat-button
+      *ngIf="isCurrentUserIsAdmin && isLoggedIn"
+      (click)="navigateToAdminPage()"
+      class="pag-admin"
+    >
+      {{ "Administrare" }}
+    </button>
+
+    <button
+      mat-button
       (click)="navigateToClientRequestSelection()"
       class="float-right button_hovering"
       [ngClass]="{ 'special-style': isClientAccount && !isWorkerAccount }"

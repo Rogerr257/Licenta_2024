@@ -72,19 +72,6 @@ export class ProfessionalServicesComponent {
     );
   }
 
-  // getItems(): Observable<any[]> {
-  //   const collectionInstance = collection(
-  //     this.firestore,
-  //     'meseriiProfesionisti'
-  //   );
-  //   const filteredQuery = query(
-  //     collectionInstance,
-  //     where('email', '==', this.userId.email)
-  //   );
-
-  //   return collectionData(filteredQuery);
-  // }
-
   backToHome() {
     this.router.navigate(['/home-client']);
   }
@@ -99,4 +86,19 @@ export class ProfessionalServicesComponent {
       await updateDoc(docRef, { selectate: service.selectate });
     });
   }
+
+  
+  // getItems(): Observable<any[]> {
+  //   const collectionInstance = collection(
+  //     this.firestore,
+  //     'meseriiProfesionisti'
+  //   );
+  //   const filteredQuery = query(
+  //     collectionInstance,
+  //     where('email', '==', this.userId.email)
+  //   );
+
+  //   return collectionData(filteredQuery);
+  // }
+
 }
