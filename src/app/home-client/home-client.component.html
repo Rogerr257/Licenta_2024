@@ -10,7 +10,7 @@
         {{ item.nume }}
       </li>
     </ul>
-    <div *ngIf="!afisareMesajConectare" class="mesajLogare">
+    <div *ngIf="!afisareMesajConectare || !clientAplicatie" class="mesajLogare">
       <p>Pentru a putea face o cerere,</p>
       <p>vă rugăm să vă autentificați.</p>
     </div>

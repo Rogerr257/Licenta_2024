@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { SharedService } from './shared.service';
+import { SharedService } from './services/shared.service';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 @Component({
