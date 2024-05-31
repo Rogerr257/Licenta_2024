@@ -6,6 +6,7 @@ import { ServiceRequestInfoService } from '../services/service-request-info.serv
 import { EmailService } from '../services/email.service';
 import { v4 as uuidv4 } from 'uuid';
 import { Observable } from 'rxjs';
+import { AlertifyService } from '../services/alertify.service';
 
 @Component({
   selector: 'app-service-request-details',
@@ -23,7 +24,8 @@ export class ServiceRequestDetailsComponent implements OnInit {
     private firestore: Firestore,
     private firebaseService: FirebaseService,
     private cerereDeServiciuInFormare: ServiceRequestInfoService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private alertifyService: AlertifyService
   ) {}
 
   
@@ -48,7 +50,6 @@ export class ServiceRequestDetailsComponent implements OnInit {
 
   }
 
-
   salveazaCerereaInBazaDeDate() {
     this.firebaseService.submitRequest({
       identificatorUnic: uuidv4(),
@@ -72,7 +73,7 @@ export class ServiceRequestDetailsComponent implements OnInit {
         }
       );
 
-    // se trimite mail la toti meseriasii filtrati dupa meserie excluzand pe cel logat
+    // se trimite mail la toti meseriasii filtrati dupa meserie
     for (const meserias of this.potriviri) {
       this.emailService.sendEmail(
         {
@@ -96,10 +97,10 @@ export class ServiceRequestDetailsComponent implements OnInit {
   trimiteCerereaSiSalveaza() {
     this.salveazaCerereaInBazaDeDate();
     this.trimiteMailuriCuCererea();
+    this.alertifyService.success('Cererea a fost trimisă cu succes. Vă mulțumim!'); 
   }
 
   back() {
-    // Redirect the user to the selection-page1 component
     this.router.navigate(['/home-client']);
   }
 }

@@ -7,22 +7,13 @@
 }
 
 .page-title-background {
-  margin-top: 20px;
+  margin-top: 278px;
   padding: 20px; /* Add more padding for better spacing */
   background-color: #fff; /* Set the background color of the title to white */
   border-radius: 5px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 25px;
   font-weight: 900;
-}
-
-.subtitle-background {
-  padding: 13px; /* Add more padding for better spacing */
-  background-color: #fff; /* Set the background color of the title to white */
-  border-radius: 2px;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 20px;
-  font-weight: 700;
 }
 
 .service-list {

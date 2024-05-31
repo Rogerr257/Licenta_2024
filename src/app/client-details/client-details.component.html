@@ -1,27 +1,27 @@
 <div class="homeForm">
-  <h1 class="mesajServicii">Informatii personale</h1>
+  <h1 class="mesajServicii">Informații personale</h1>
 
   <form class="clientDetailsForm">
     <mat-form-field appearance="outline" class="inputField">
-      <input type="text" matInput [(ngModel)]="detalii_client.nume" placeholder="Nume" [ngModelOptions]="{standalone: true}">
+      <input required type="text" matInput [(ngModel)]="detalii_client.nume" placeholder="Nume" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <mat-form-field appearance="outline" class="inputField">
-      <input type="text" matInput [(ngModel)]="detalii_client.prenume" placeholder="Prenume" [ngModelOptions]="{standalone: true}">
+      <input required type="text" matInput [(ngModel)]="detalii_client.prenume" placeholder="Prenume" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <mat-form-field appearance="outline" class="inputField">
-      <input type="tel" matInput [(ngModel)]="detalii_client.telefon" placeholder="Telefon" [ngModelOptions]="{standalone: true}">
+      <input required type="tel" matInput [(ngModel)]="detalii_client.telefon" placeholder="Telefon" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <mat-form-field appearance="outline" class="inputField">
-      <input type="email" matInput [(ngModel)]="detalii_client.email" placeholder="Email" [ngModelOptions]="{standalone: true}">
+      <input required type="email" matInput [(ngModel)]="detalii_client.email" placeholder="Email" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </form>
 
   <div class="button-container">
     <button mat-raised-button (click)="back()" color="primary">
-      Inapoi
+      Înapoi
     </button>
     <button mat-raised-button (click)="salveazaDetalii()" color="primary">
-      Continua
+      Continuați
     </button>
   </div>
 </div>

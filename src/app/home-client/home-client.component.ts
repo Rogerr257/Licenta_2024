@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
-import { collection, Firestore, collectionData } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subscription } from 'rxjs';
 import { SharedService } from '../shared.service';
+import { collection, Firestore, collectionData, orderBy, query } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home-client',
@@ -16,7 +16,7 @@ export class HomeClientComponent {
   serviciiPrimare: any;
   serviciuPrincipal: any;
   clientAplicatie: any;
-  buttonAppearence = true;
+  afisareMesajConectare = true;
   private subscription: Subscription;
 
   constructor(
@@ -29,45 +29,40 @@ export class HomeClientComponent {
   ) {
     this.subscription = this.sharedService.buttonVisible$.subscribe(
       (visible) => {
-        this.buttonAppearence = visible;
+        this.afisareMesajConectare = visible;
       }
     );
   }
 
   ngOnInit() {
-    this.getData();
+    this.getData(); // Apelăm metoda pentru a obține datele
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.clientAplicatie = user;
+        this.clientAplicatie = user; // Obținem informațiile despre clientul conectat
       }
     });
-
-    // this.authService.getCurrentUser().subscribe((user) => {
-    //   this.clientAplicatie = user;
-    //   console.log(this.clientAplicatie.email);
-    // });
   }
 
   onItemClick(serviciulSelectat: any) {
-    this.serviciuPrincipal = serviciulSelectat.nume;
+    this.serviciuPrincipal = serviciulSelectat.nume; // Setăm serviciul principal selectat
 
+    // Actualizăm informațiile cererii de serviciu cu serviciul principal și email-ul clientului
     this.cerereDeServiciuInFormare.InformatiiPentruCerere = {
       serviciuPrincipal: this.serviciuPrincipal,
       mailClient: this.clientAplicatie.email,
     };
 
+    // Redirecționăm către pagina de selecție cu parametrii necesari
     this.router.navigate(['/selection'], {
       queryParams: { serviciulSelectat: serviciulSelectat.nume },
     });
   }
 
-  getData() {
-    const collectionInstance = collection(this.firestore, 'servicii-de-baza');
-    this.serviciiPrimare = collectionData(collectionInstance);
-  }
 
-  loginMethodFromHomeClient(): void {
-    this.authService.loginWithGoogle();
+  getData() {
+    const collectionInstance = collection(this.firestore, 'servicii-de-baza'); // Obținem colecția din Firestore
+    const orderedCollection = query(collectionInstance, orderBy('nume')); // Ordonăm colecția după nume
+    this.serviciiPrimare = collectionData(orderedCollection); // Obținem datele colecției
   }
 
   ngOnDestroy() {

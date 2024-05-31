@@ -9,6 +9,8 @@ import { JobsPortalComponent } from './jobs-portal/jobs-portal.component';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+
 import {
   AuthGuard,
   redirectUnauthorizedTo,
@@ -69,6 +71,12 @@ const routes: Routes = [
     component: ProfessionalServicesComponent,
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'admin-page',
+    component: AdminPageComponent,
+    // canActivate: [AuthGuard],
+    // data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 ];
 

@@ -37,6 +37,7 @@ import { AuthService } from './services/auth.service';
 import { ServiceRequestDetailsComponent } from './service-request-details/service-request-details.component';
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ProfessionalServicesComponent } from './professional-services/professio
     ServiceRequestDetailsComponent,
     PortalServiceComponent,
     ProfessionalServicesComponent,
+    AdminPageComponent,
   ],
   imports: [
     FormsModule,

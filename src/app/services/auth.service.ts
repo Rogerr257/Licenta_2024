@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertifyService } from './alertify.service';
 import firebase from 'firebase/compat/app';
 import { Observable, firstValueFrom } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Firestore, collection, collectionData, doc, getDoc, setDoc, addDoc , query, where} from '@angular/fire/firestore';
 
@@ -23,6 +22,16 @@ export class AuthService {
     this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
+  authStateFunction(user: any): void {
+    if (user) {
+      // Save user to Firestore upon logout
+      this.saveUserToFirestore(user);
+    } else {
+      this.alertifyService.success('Logged Out');
+      this.router.navigate(['/']);
+    }
+  }
+
   // Method to save user information in Firestore collection
   async saveUserToFirestore(user: firebase.User): Promise<void> {
     const userRef = doc(this.firestore, `users/${user.uid}`);
@@ -38,12 +47,12 @@ export class AuthService {
         isClient: false
       });
 
-      const dateNecesare = await this.getData(user.email);
-      //console.log(dateNecesare);
+      const dateClient = await this.creeazaProfesiiGoaleClient(user.email);
+      console.log(dateClient);
     }
   }
 
-  async getData(email: any): Promise<any> {
+  async creeazaProfesiiGoaleClient(email: any): Promise<any> {
 
       let aServiciiBaza: any = [];
       let aMeseriileUnuiAsociat: any = [];
@@ -63,7 +72,7 @@ export class AuthService {
           serviciu: serviciu.nume,
           selectate: false
         }
-        //await addDoc(colectieServiciiBazaAsociate, meserie);
+        await addDoc(colectieServiciiBazaAsociate, meserie);
       }
 
       return {
@@ -73,15 +82,6 @@ export class AuthService {
    
   }
 
-  authStateFunction(user: any): void {
-    if (user) {
-      // Save user to Firestore upon logout
-      this.saveUserToFirestore(user);
-    } else {
-      this.alertifyService.success('Logged Out');
-      this.router.navigate(['/']);
-    }
-  }
 
   logoutServiceMethod(): void {
     this.afAuth.signOut();
@@ -94,33 +94,4 @@ export class AuthService {
     return this.afAuth.authState;
     // function that returns an Observable<firebase.User | null> based on the informations of the logged user
   }
-
-  // canActivate(): Observable<boolean> {
-  //   return this.getCurrentUser().pipe(
-  //     map((user) => {
-  //       if (user) {
-  //         return true;
-  //       } else {
-  //         this.router.navigate(['/home-client']);
-  //         return false;
-  //       }
-  //     })
-  //   );
-  // }
-
-  getProfUserJobs(): any {
-    
-  }
-
-  // Auth logic to run auth providers
-  // AuthLogin(provider: any) {
-  //   return this.afAuth
-  //     .signInWithPopup(provider)
-  //     .then((result) => {
-  //       console.log('You have been successfully logged in!');
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 }
