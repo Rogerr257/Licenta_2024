@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { ServiceRequestInfoService } from '../services/service-request-info.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subscription } from 'rxjs';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../services/shared.service';
 import { collection, Firestore, collectionData, orderBy, query } from '@angular/fire/firestore';
 
 @Component({
@@ -16,13 +16,12 @@ export class HomeClientComponent {
   serviciiPrimare: any;
   serviciuPrincipal: any;
   clientAplicatie: any;
-  afisareMesajConectare = true;
+  afisareMesajConectare = false;
   private subscription: Subscription;
 
   constructor(
     private router: Router,
     private firestore: Firestore,
-    private authService: AuthService,
     private cerereDeServiciuInFormare: ServiceRequestInfoService,
     private afAuth: AngularFireAuth,
     private sharedService: SharedService
