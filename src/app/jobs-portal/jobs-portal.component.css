@@ -16,6 +16,15 @@
   font-weight: 900;
 }
 
+.subtitle-background {
+  padding: 13px; /* Add more padding for better spacing */
+  background-color: #fff; /* Set the background color of the title to white */
+  border-radius: 2px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .service-list {
   margin-bottom: 400px;
   display: flex;

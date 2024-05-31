@@ -12,6 +12,7 @@ import {
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { AlertifyService } from '../services/alertify.service';
 
 interface DocumentWithId {
   id: string;
@@ -24,14 +25,14 @@ interface DocumentWithId {
 })
 export class ProfessionalServicesComponent {
   userId: any;
-  // serviciilePrimare: any;
   serviciiAsociateMeserias: any;
   documentIds: string[] = [];
 
   constructor(
     private router: Router,
     private firestore: Firestore,
-    private userService: AuthService
+    private userService: AuthService,
+    private alertifyService: AlertifyService
   ) {}
 
   ngOnInit() {
@@ -45,15 +46,6 @@ export class ProfessionalServicesComponent {
       // this.getDocumentIds("meseriiProfesionisti");
     });
   }
-
-  // async getDocumentIds(collectionName: string): Promise<void> {
-  //   const queryAll = query(collection(this.firestore, collectionName),  where('email', '==', this.userId.email));
-  //   const querySnapshot = await getDocs(queryAll);
-    
-  //   querySnapshot.forEach((doc) => {
-  //     this.documentIds.push(doc.id);
-  //   });
-  // }
 
   getItems(): any {
     const collectionInstance = collection(this.firestore, 'meseriiProfesionisti');
@@ -85,20 +77,8 @@ export class ProfessionalServicesComponent {
       );
       await updateDoc(docRef, { selectate: service.selectate });
     });
+
+    this.alertifyService.success('Profesiile au fost actualizate cu succes!'); 
   }
-
-  
-  // getItems(): Observable<any[]> {
-  //   const collectionInstance = collection(
-  //     this.firestore,
-  //     'meseriiProfesionisti'
-  //   );
-  //   const filteredQuery = query(
-  //     collectionInstance,
-  //     where('email', '==', this.userId.email)
-  //   );
-
-  //   return collectionData(filteredQuery);
-  // }
 
 }

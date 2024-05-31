@@ -15,6 +15,7 @@ export class JobsPortalComponent {
   allServicesData: any;
   serviciiFiltrate: any;
   userId: any;
+  existaServiciiPentruMester: any;
 
   constructor(
     private firestore: Firestore,
@@ -58,9 +59,14 @@ export class JobsPortalComponent {
             this.allServicesData,
             meseriiData
           );
+
+          if(this.serviciiFiltrate.length === 0){
+            this.existaServiciiPentruMester = false;
+          }
          // console.log(this.serviciiFiltrate);
           //console.log(this.userId.email);
         });
+
       });
     });
   }

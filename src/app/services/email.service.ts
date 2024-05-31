@@ -6,12 +6,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmailService {
 
-  private emailUrl = 'http://localhost:3000/send-email'; // Replace with your backend URL
+  private emailUrl = 'http://localhost:3000/send-email';
 
   constructor(private http: HttpClient) { }
 
   sendEmail(data: any) {
     return this.http.post(this.emailUrl, data);
   }
-
 }

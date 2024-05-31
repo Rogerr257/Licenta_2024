@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertifyService } from './alertify.service';
 import firebase from 'firebase/compat/app';
 import { Observable, firstValueFrom } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Firestore, collection, collectionData, doc, getDoc, setDoc, addDoc , query, where} from '@angular/fire/firestore';
 
@@ -49,7 +48,7 @@ export class AuthService {
       });
 
       const dateClient = await this.creeazaProfesiiGoaleClient(user.email);
-      //console.log(dateClient);
+      console.log(dateClient);
     }
   }
 
@@ -73,7 +72,7 @@ export class AuthService {
           serviciu: serviciu.nume,
           selectate: false
         }
-        //await addDoc(colectieServiciiBazaAsociate, meserie);
+        await addDoc(colectieServiciiBazaAsociate, meserie);
       }
 
       return {

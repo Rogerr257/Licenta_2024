@@ -1,5 +1,5 @@
 <div class="homeForm">
-  <h1>Selectați locatia si data lucrarii</h1>
+  <h1>Selectați locația și data lucrării</h1>
 
   <mat-form-field appearance="outline">
     <mat-label>Județ</mat-label>
@@ -24,7 +24,7 @@
   <input
     matInput
     [matDatepicker]="picker"
-    placeholder="Cand?"
+    placeholder="Când?"
     (dateChange)="onDatePickerChange($event)"
     style="width: 60%"
   />
@@ -35,5 +35,5 @@
     Continuați
   </button>
   <button mat-raised-button (click)="back()" color="primary">
-    Inapoi
+    Înapoi
   </button>
