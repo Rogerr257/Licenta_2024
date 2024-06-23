@@ -45,4 +45,8 @@ export class PortalServiceComponent {
     );
     return collectionData(filteredQuery);
   }
+  
+  navigateBack() {
+    this.router.navigate(['/portal']);
+  }
 }

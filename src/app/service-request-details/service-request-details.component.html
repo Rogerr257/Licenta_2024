@@ -3,27 +3,39 @@
   <div class="service-details">
     <div class="detail-item">
       <span class="label">Serviciu principal:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.serviciuPrincipal }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.serviciuPrincipal
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Serviciu secundar:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.serviciu_secundar }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.serviciu_secundar
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Oras:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.orasSelectat }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.orasSelectat
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Judet:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.judetSelectat }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.judetSelectat
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Data:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.dataSelectata }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.dataSelectata
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Detalii suplimentare:</span>
-      <span class="value">{{ cerereDeServiciuCompletInFormare.detalii_suplimentare }}</span>
+      <span class="value">{{
+        cerereDeServiciuCompletInFormare.detalii_suplimentare
+      }}</span>
     </div>
     <div class="detail-item">
       <span class="label">Nume:</span>
@@ -43,8 +55,12 @@
     </div>
   </div>
   <div class="submit-button-wrapper">
-    <button mat-raised-button color="primary"
-(click)="trimiteCerereaSiSalveaza()">Trimite cererea
-</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="trimiteCerereaSiSalveaza()"
+    >
+      Trimite cererea
+    </button>
   </div>
 </div>
