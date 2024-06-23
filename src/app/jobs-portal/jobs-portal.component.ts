@@ -31,27 +31,22 @@ export class JobsPortalComponent {
         this.firestore,
         'cereriDeServicii'
       );
-
       // Obținem colecția de cereri de servicii din Firestore
       this.servicesRequests = collectionData(
         this.servicesRequestsCollection
       ) as Observable<any[]>;
-
       // Ne subscriem la modificările în cererile de servicii
       this.servicesRequests.subscribe((data: any[]) => {
         this.allServicesData = data;
-
         // Odată ce am primit datele din prima colecție, obținem datele din a doua colecție
         const meseriiProfesionistiCollection = collection(
           this.firestore,
           'meseriiProfesionisti'
         );
-
         // Odată ce am primit datele din prima colecție, obținem datele din a doua colecție
         const meseriiProfesionistiData = collectionData(
           meseriiProfesionistiCollection
         ) as Observable<any[]>;
-
         // Observăm modificările în datele din a doua colecție
         meseriiProfesionistiData.subscribe((meseriiData: any[]) => {
           // Acum avem date din ambele colecții, putem compara și salva așa cum este necesar
@@ -72,6 +67,7 @@ export class JobsPortalComponent {
   }
 
   // Metodă pentru filtrarea datelor
+  
   filterData(data1: any[], data2: any[]): any[] {
     // Filtrăm datele din data1 bazat pe condiția descrisă
     const filteredData = data1.filter((item1) => {

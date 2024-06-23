@@ -43,15 +43,11 @@ export class HomeClientComponent {
   }
 
   onItemClick(serviciulSelectat: any) {
-    this.serviciuPrincipal = serviciulSelectat.nume; // Setăm serviciul principal selectat
-
-    // Actualizăm informațiile cererii de serviciu cu serviciul principal și email-ul clientului
+    this.serviciuPrincipal = serviciulSelectat.nume; 
     this.cerereDeServiciuInFormare.InformatiiPentruCerere = {
       serviciuPrincipal: this.serviciuPrincipal,
       mailClient: this.clientAplicatie.email,
     };
-
-    // Redirecționăm către pagina de selecție cu parametrii necesari
     this.router.navigate(['/selection'], {
       queryParams: { serviciulSelectat: serviciulSelectat.nume },
     });

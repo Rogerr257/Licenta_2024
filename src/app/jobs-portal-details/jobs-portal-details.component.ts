@@ -31,8 +31,7 @@ export class PortalServiceComponent {
 
     this.getItems().subscribe((items: any) => {
       this.cerereDeServiciuComplet = items[0];
-    });
-    
+    });  
   }
 
   getItems(): Observable<any[]> {
@@ -44,8 +43,6 @@ export class PortalServiceComponent {
       collectionInstance,
       where('identificatorUnic', '==', this.identificatorUnic)
     );
-
     return collectionData(filteredQuery);
   }
-
 }

@@ -1,39 +1,30 @@
 <div class="homeForm">
   <h1>Selectați locația și data lucrării</h1>
-
   <mat-form-field appearance="outline">
     <mat-label>Județ</mat-label>
-    <mat-select (selectionChange)="onJudetChange($event)" required>
+    <mat-select id="judetSelect" (selectionChange)="onJudetChange($event)" required>
       <mat-option value="">Selectați județul</mat-option>
       <mat-option *ngFor="let judet of judete | async" value="{{ judet.nume.nume }}">
-      {{ judet.nume.nume }}
+        {{ judet.nume.nume }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
   <mat-form-field appearance="outline">
     <mat-label>Oraș</mat-label>
-    <mat-select (selectionChange)="onOrasChange($event)" required>
+    <mat-select id="orasSelect" (selectionChange)="onOrasChange($event)" required>
       <mat-option value="">Selectați orașul</mat-option>
       <mat-option *ngFor="let oras of oraseleFiltrate" value="{{ oras.nume }}">
         {{ oras.nume }}
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <input
-    matInput
-    [matDatepicker]="picker"
-    placeholder="Când?"
-    (dateChange)="onDatePickerChange($event)"
-    style="width: 60%"
-  />
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <input matInput [matDatepicker]="picker" placeholder="Când?" (dateChange)="onDatePickerChange($event)" style="width: 60%" />
+  <mat-datepicker-toggle id="dataSelect" matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker required></mat-datepicker>
-
   <button mat-raised-button (click)="continue()" [disabled]="!judetSelectat || !orasSelectat || !dataSelectata" color="primary">
     Continuați
   </button>
   <button mat-raised-button (click)="back()" color="primary">
     Înapoi
   </button>
+</div>

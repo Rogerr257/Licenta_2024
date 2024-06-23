@@ -32,9 +32,11 @@ export class ClientDetailsComponent {
   }
 
   // Metoda pentru salvarea detaliilor clientului
+
   salveazaDetalii() {
     // Verificăm dacă toate câmpurile sunt completate
-    if(this.detalii_client.nume && this.detalii_client.prenume && this.detalii_client.email && this.detalii_client.telefon){
+    if(this.detalii_client.nume && this.detalii_client.prenume 
+      && this.detalii_client.email && this.detalii_client.telefon){
       // Dacă sunt completate, actualizăm detaliile clientului folosind serviciul
       this.serviceRequest.updateUserDetails({
         nume: this.detalii_client.nume,
@@ -42,7 +44,6 @@ export class ClientDetailsComponent {
         email: this.detalii_client.email,
         telefon: this.detalii_client.telefon
       });
-
       // Redirectăm utilizatorul către pagina de detalii a cererii de serviciu
       this.router.navigate(['/service-request-details']);
     }
