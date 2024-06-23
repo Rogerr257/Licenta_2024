@@ -28,10 +28,6 @@ npm install -g firebase-tools
 ng serve
 
 # Pentru posibiltatea trimiterii mailurilor este necesară rularea unui proiect separat de Node.js, având conținutul fișierului src\app\index-nodemailer.js.
-
-# Cerințe preliminare
-Se rulează comanda npm install pentru instalarea dependențelor. 
-
-# Pașii de lansare ai aplicației de Node.js: 
-node index-nodemailer.js
+Cerințe preliminare: se rulează comanda npm install pentru instalarea dependențelor. 
+Pașii de lansare ai aplicației de Node.js: node index-nodemailer.js
 
