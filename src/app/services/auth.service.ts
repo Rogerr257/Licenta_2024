@@ -27,7 +27,7 @@ export class AuthService {
       // Save user to Firestore upon logout
       this.saveUserToFirestore(user);
     } else {
-      this.alertifyService.success('Logged Out');
+      this.alertifyService.success('Ați fost deconectat');
       this.router.navigate(['/']);
     }
   }
