@@ -15,7 +15,7 @@ export class JobsPortalComponent {
   allServicesData: any;
   serviciiFiltrate: any;
   userId: any;
-  existaServiciiPentruMester: any;
+  existaServiciiPentruMester: boolean = false;
 
   constructor(
     private firestore: Firestore,
@@ -56,6 +56,9 @@ export class JobsPortalComponent {
           );
 
           if(this.serviciiFiltrate.length === 0){
+            this.existaServiciiPentruMester = true;
+          }
+          else {
             this.existaServiciiPentruMester = false;
           }
          // console.log(this.serviciiFiltrate);

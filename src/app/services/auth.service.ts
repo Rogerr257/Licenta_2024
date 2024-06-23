@@ -19,7 +19,7 @@ export class AuthService {
 
   // Sign in with Google
   loginWithGoogle(): any {
-    this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
   authStateFunction(user: any): void {
