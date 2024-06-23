@@ -28,20 +28,19 @@ export class JobLocationTimeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData(); // Apelăm metoda pentru a obține datele inițiale
+    this.getData(); 
   }
 
-  // Metodă pentru a obține datele inițiale
+
   getData() {
-    const colectieJudete = collection(this.firestore, 'judete'); // Obținem colecția de județe din Firestore
-    const colectieJudeteOrdonate = query(colectieJudete, orderBy('nume')); // Ordonăm colecția de județe după nume
-    this.judete = collectionData(colectieJudeteOrdonate); // Obținem datele județelor
+    const colectieJudete = collection(this.firestore, 'judete'); 
+    const colectieJudeteOrdonate = query(colectieJudete, orderBy('nume'));
+    this.judete = collectionData(colectieJudeteOrdonate);
   }
 
   // Metodă apelată atunci când se schimbă județul selectat
   onJudetChange(event: any) {
-    const colectieDeOrase = collection(this.firestore, 'orase'); // Obținem colecția de orașe din Firestore
-
+    const colectieDeOrase = collection(this.firestore, 'orase'); 
     // Filtrăm orașele în funcție de județul selectat
     collectionData(colectieDeOrase).subscribe((toateOrasele: any[]) => {
       this.oraseleFiltrate = toateOrasele.filter(
@@ -76,7 +75,6 @@ export class JobLocationTimeComponent implements OnInit {
       orasSelectat: this.orasSelectat,
       dataSelectata: this.dataSelectata,
     });
-
     // Redirecționăm către pagina de detalii suplimentare
     this.router.navigate(['/additional-details']);
   }

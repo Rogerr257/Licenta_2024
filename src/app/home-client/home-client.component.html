@@ -5,9 +5,7 @@
       <li
         *ngFor="let item of serviciiPrimare | async"
         class="service"
-        (click)="onItemClick(item)"
-      >
-        {{ item.nume }}
+        (click)="onItemClick(item)">{{ item.nume }}
       </li>
     </ul>
     <div *ngIf="!afisareMesajConectare || !clientAplicatie" class="mesajLogare">

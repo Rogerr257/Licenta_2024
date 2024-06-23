@@ -20,6 +20,7 @@ export class JobDetailsComponent implements OnInit {
   ngOnInit() {}
 
   // Metoda pentru a continua la următoarea etapă
+
   continue() {
     if(this.textAreaValue){ // Verificăm dacă câmpul de text are o valoare
       // Dacă are valoare, actualizăm detaliile utilizatorului cu detaliile suplimentare introduse
@@ -33,7 +34,6 @@ export class JobDetailsComponent implements OnInit {
         detalii_suplimentare:"Nu există detalii suplimentare",
       });
     }
-
     // Redirecționăm către pagina de detalii a clientului
     this.router.navigate(['/client-details']);
   }

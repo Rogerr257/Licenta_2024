@@ -60,6 +60,7 @@ export class AppComponent {
   loginMethod(): void {
     this.authService.loginWithGoogle();
   }
+  
   logoutMethod(): void {
     this.authService.logoutServiceMethod();
     this.isLoggedIn = false;

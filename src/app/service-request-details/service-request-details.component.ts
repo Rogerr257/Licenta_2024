@@ -73,7 +73,6 @@ export class ServiceRequestDetailsComponent implements OnInit {
         }
       );
 
-    // se trimite mail la toti meseriasii filtrati dupa meserie
     for (const meserias of this.potriviri) {
       this.emailService.sendEmail(
         {

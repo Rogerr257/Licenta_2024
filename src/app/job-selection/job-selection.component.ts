@@ -34,12 +34,11 @@ export class JobSelectionComponent {
 
   // Metodă pentru a obține serviciile secundare asociate cu serviciul principal selectat
   getItems(): Observable<any[]> {
-    const collectionInstance = collection(this.firestore, 'servicii-secundare'); // Obținem colecția de servicii secundare din Firestore
+    const collectionInstance = collection(this.firestore, 'servicii-secundare'); 
     const filteredQuery = query(
       collectionInstance,
-      where('serviciu', '==', this.serviciulSelectat) // Filtrăm serviciile secundare după serviciul principal selectat
+      where('serviciu', '==', this.serviciulSelectat)
     );
-
     return collectionData(filteredQuery); // Returnăm datele obținute sub formă de Observable
   }
 
@@ -49,7 +48,6 @@ export class JobSelectionComponent {
     this.serviceRequest.updateUserDetails({
       serviciu_secundar: serviciulSelectat.serviciu_secundar
     });
-
     // Redirecționăm către pagina de detalii a locației și timpului
     this.router.navigate(['/location-time-details'], {
       queryParams: { serviciulSelectat: serviciulSelectat.serviciu },

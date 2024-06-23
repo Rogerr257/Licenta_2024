@@ -38,12 +38,9 @@ export class ProfessionalServicesComponent {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe((user) => {
       this.userId = user;
-
       this.getItems().subscribe((items: any) => {
         this.serviciiAsociateMeserias = items;
       });
-
-      // this.getDocumentIds("meseriiProfesionisti");
     });
   }
 
@@ -58,7 +55,6 @@ export class ProfessionalServicesComponent {
         querySnapshot.forEach((doc: any) => {
           documents.push({ id: doc.id, ...doc.data() });
         });
-  
         return documents;
       })
     );
@@ -69,7 +65,6 @@ export class ProfessionalServicesComponent {
   }
 
   async salveazaProfesiile() {
-    // Iterate through each service and update its corresponding document
     this.serviciiAsociateMeserias.forEach(async (service: any) => {
       const docRef = doc(
         this.firestore,
@@ -77,7 +72,6 @@ export class ProfessionalServicesComponent {
       );
       await updateDoc(docRef, { selectate: service.selectate });
     });
-
     this.alertifyService.success('Profesiile au fost actualizate cu succes!'); 
   }
 
