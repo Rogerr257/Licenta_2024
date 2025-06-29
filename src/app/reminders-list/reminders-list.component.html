@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="page-title-background">📅 Lista remindere</h1>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" routerLink="/add-reminder">
+      Add new reminder
+    </button>
+  </div>
+
+  <div *ngIf="!(reminders$ | async); else list">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <ng-template #list>
+    <div class="service-list">
+      <div class="service" *ngFor="let reminder of reminders$ | async">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{ reminder.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ reminder.description }}</p>
+            <p>📌 Data eveniment: 
+              {{ reminder.eventDate?.toDate ? (reminder.eventDate.toDate() | date) : (reminder.eventDate | date) }}
+            </p>
+            <p>⏰ Data reminder: 
+              {{ reminder.reminderDate?.toDate ? (reminder.reminderDate.toDate() | date) : (reminder.reminderDate | date) }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+</div>

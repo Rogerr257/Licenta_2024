@@ -1,0 +1,73 @@
+<div class="add-reminder-form">
+  <h1>Adaugă un nou reminder</h1>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Titlu</mat-label>
+    <input matInput [(ngModel)]="title" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Descriere</mat-label>
+    <textarea matInput [(ngModel)]="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data evenimentului</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="eventDate" required />
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tip eveniment</mat-label>
+    <mat-select [(ngModel)]="eventType">
+      <mat-option value="unic">Unic</mat-option>
+      <mat-option value="recurent">Recurent</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf="eventType === 'recurent'">
+    <mat-form-field appearance="outline">
+      <mat-label>Frecvență</mat-label>
+      <mat-select [(ngModel)]="frequency">
+        <mat-option value="lunar">Lunar</mat-option>
+        <mat-option value="anual">Anual</mat-option>
+        <mat-option value="saptamanal">Săptămânal</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-slide-toggle [(ngModel)]="enableNotification">
+    Vrei să fii notificat înainte?
+  </mat-slide-toggle>
+
+  <div *ngIf="enableNotification">
+    <mat-form-field appearance="outline">
+      <mat-label>Notifică-mă cu</mat-label>
+      <input matInput type="number" [(ngModel)]="notifyBeforeValue" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Unitate notificare</mat-label>
+      <mat-select [(ngModel)]="notifyBeforeUnit">
+        <mat-option value="zile">Zile</mat-option>
+        <mat-option value="ore">Ore</mat-option>
+        <mat-option value="minute">Minute</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="addReminder()" [disabled]="isLoading">
+      {{ isLoading ? 'Se salvează...' : 'Salvează reminder' }}
+    </button>
+
+    <button mat-raised-button color="accent" routerLink="/reminders-list">
+      Vezi toate reminderele
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" style="margin-top: 10px;">
+    <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+  </div>
+</div>

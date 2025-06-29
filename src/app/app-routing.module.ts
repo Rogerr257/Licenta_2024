@@ -10,6 +10,8 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { RemindersListComponent } from './reminders-list/reminders-list.component';
+import { AddReminderComponent } from './add-reminder/add-reminder.component';
 
 import {
   AuthGuard,
@@ -21,8 +23,15 @@ const redirectUnauthorizedToLogin = () =>
 const adminOnly = () => hasCustomClaim('admin');
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home-client', pathMatch: 'full' },
-  { path: 'home-client', component: HomeClientComponent },
+  { path: '', redirectTo: '/reminders-list', pathMatch: 'full' },
+  { path: 'add-reminder', component: AddReminderComponent },
+  { 
+    path: 'home-client',
+    component: HomeClientComponent },
+  {
+    path: 'reminders-list',
+    component: RemindersListComponent
+  },
   {
     path: 'selection',
     component: JobSelectionComponent,

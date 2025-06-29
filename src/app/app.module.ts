@@ -13,7 +13,9 @@ import { MatInputModule } from '@angular/material/input';;
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -38,6 +40,8 @@ import { ServiceRequestDetailsComponent } from './service-request-details/servic
 import { PortalServiceComponent } from './jobs-portal-details/jobs-portal-details.component';
 import { ProfessionalServicesComponent } from './professional-services/professional-services.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { RemindersListComponent } from './reminders-list/reminders-list.component';
+import { AddReminderComponent } from './add-reminder/add-reminder.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     PortalServiceComponent,
     ProfessionalServicesComponent,
     AdminPageComponent,
+    RemindersListComponent,
+    AddReminderComponent
   ],
   imports: [
     FormsModule,
@@ -64,6 +70,9 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     MatButtonModule,
     MatFormFieldModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatSlideToggleModule,
     MatInputModule,
     MatCardModule,
     MatGridListModule,
